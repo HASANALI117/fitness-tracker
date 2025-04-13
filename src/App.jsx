@@ -8,15 +8,13 @@ import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   return (
-    <>
-      <Router>
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      {/* <Navbar /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }

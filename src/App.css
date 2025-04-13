@@ -3,14 +3,15 @@
 .hero {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 0.97) 20%,
       rgba(0, 0, 0, 0.85) 50%,
-      rgba(0, 0, 0, 0.5) 75%,
+      rgba(0, 0, 0, 0.6) 75%,
       rgba(0, 0, 0, 0.2) 100%
     ),
     url("https://wallup.net/wp-content/uploads/2019/10/415536-body-building-fitness-muscle-muscles-weight-lifting-bodybuilding-6.jpg");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   position: relative;
   min-height: 90vh;
+  background-repeat: no-repeat;
 }
