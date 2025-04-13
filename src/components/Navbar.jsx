@@ -1,25 +1,36 @@
-import React from "react";
+import { Menu } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between bg-black text-white">
-      <img
-        src="https://breakdancelibrary.com/fitness/wp-content/uploads/sites/23/2022/12/logo-fitness.svg"
-        alt=""
-      />
-
-      <div className="flex">
-        <h1>Home</h1>
-        <h1>About</h1>
-        <h1>Features</h1>
-        <h1>Service</h1>
-        <h1>Exercise</h1>
+    <header className="bg-black text-white">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <div className="flex items-center">
+          <span className="text-lime-400 font-bold text-2xl">FitNation</span>
+        </div>
+        <nav className="hidden md:flex space-x-8">
+          <a href="#" className="hover:text-lime-400">
+            Home
+          </a>
+          <a href="#" className="hover:text-lime-400">
+            Programs
+          </a>
+          <a href="#" className="hover:text-lime-400">
+            About
+          </a>
+          <a href="#" className="hover:text-lime-400">
+            Trainers
+          </a>
+        </nav>
+        <div className="flex items-center space-x-4">
+          <button className="bg-lime-400 text-black px-4 py-2 rounded-md font-medium">
+            Contact Us
+          </button>
+          <button className="bg-black text-lime-400 px-4 py-2 border border-lime-400 rounded-md font-medium">
+            Get Started
+          </button>
+          <Menu className="md:hidden" />
+        </div>
       </div>
-
-      <div className="flex">
-        <button>Contact Us</button>
-        <button>Get Started</button>
-      </div>
-    </div>
+    </header>
   );
 }
