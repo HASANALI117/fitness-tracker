@@ -5,7 +5,7 @@ export default function Navbar() {
     <header className="text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <div className="flex items-center">
-          <span className="text-lime-400 font-bold text-2xl">FitNation</span>
+          <img src="logo.PNG" alt="logo" className="w-14 h-14" />
         </div>
         <nav className="hidden md:flex space-x-8">
           <a href="#" className="hover:text-lime-400">
