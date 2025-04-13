@@ -2,7 +2,7 @@ import { Menu } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="bg-black text-white">
+    <header className="text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <div className="flex items-center">
           <span className="text-lime-400 font-bold text-2xl">FitNation</span>
@@ -25,7 +25,7 @@ export default function Navbar() {
           <button className="bg-lime-400 text-black px-4 py-2 rounded-md font-medium">
             Contact Us
           </button>
-          <button className="bg-black text-lime-400 px-4 py-2 border border-lime-400 rounded-md font-medium">
+          <button className="text-lime-400 px-4 py-2 border border-lime-400 rounded-md font-medium">
             Get Started
           </button>
           <Menu className="md:hidden" />
