@@ -1,5 +1,4 @@
 import React from "react";
-import { ChevronRight, Instagram, Facebook, Twitter } from "lucide-react";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import Inspiration from "../components/Inspiration";
@@ -8,6 +7,7 @@ import Train from "../components/Train";
 import Experience from "../components/Experience";
 import Trainers from "../components/Trainers";
 import Success from "../components/Success";
+import News from "../components/News";
 
 export default function FitnessWebsite() {
   return (
@@ -34,9 +34,10 @@ export default function FitnessWebsite() {
       <Success />
 
       {/* Newsletter */}
+      <News />
 
       {/* Footer */}
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }
