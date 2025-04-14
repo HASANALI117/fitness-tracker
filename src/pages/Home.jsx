@@ -3,6 +3,7 @@ import { ChevronRight, Instagram, Facebook, Twitter } from "lucide-react";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import Inspiration from "../components/Inspiration";
+import Discover from "../components/Discover";
 
 export default function FitnessWebsite() {
   return (
@@ -12,7 +13,9 @@ export default function FitnessWebsite() {
 
       {/* Inspiration Section */}
       <Inspiration></Inspiration>
+
       {/* Discover Section */}
+      <Discover />
 
       {/* Train Smarter Section */}
 
