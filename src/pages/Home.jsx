@@ -6,6 +6,7 @@ import Inspiration from "../components/Inspiration";
 import Discover from "../components/Discover";
 import Train from "../components/Train";
 import Experience from "../components/Experience";
+import Trainers from "../components/Trainers";
 
 export default function FitnessWebsite() {
   return (
@@ -26,6 +27,7 @@ export default function FitnessWebsite() {
       <Experience />
 
       {/* Trainers Section */}
+      <Trainers />
 
       {/* Success Stories */}
 
