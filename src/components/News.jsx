@@ -2,8 +2,8 @@ import React from "react";
 
 export default function News() {
   return (
-    <div className="container mt-24 mx-auto py-12 px-6 text-center">
-      <div className="bg-lime-400 text-black p-8 rounded-lg">
+    <div className="container mt-24 mx-auto px-6 text-center">
+      <div className="bg-lime-400 text-black p-16 rounded-3xl">
         <h2 className="text-5xl font-bold mb-2">Connect Engage Transform</h2>
         <p className="text-white mb-12 mt-6 text-sm">
           Join A Vibrant Community For Fuel Motivation, Engagement Drives
