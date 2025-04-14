@@ -1,8 +1,8 @@
 import { Dumbbell, Apple, Crown } from "lucide-react";
-import FeatureCard from "./FeatureCard";
+import InspirationCard from "./InspirationCard";
 
 export default function Inspiration() {
-  const features = [
+  const inspirationCards = [
     { title: "Nutrition Guidance", icon: <Apple /> },
     { title: "Expert Trainers", icon: <Dumbbell /> },
     { title: "Progress Tracking", icon: <Dumbbell /> },
@@ -22,9 +22,9 @@ export default function Inspiration() {
         Confident You.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-4 rounded-2xl p-8 bg-gray-900">
-        {features.map((feature, index) => (
-          <FeatureCard icon={feature.icon} title={feature.title} key={index} />
+      <div className="grid md:grid-cols-2 gap-4 rounded-3xl p-8 bg-gray-900">
+        {inspirationCards.map((card, index) => (
+          <InspirationCard icon={card.icon} title={card.title} key={index} />
         ))}
       </div>
     </div>

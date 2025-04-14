@@ -14,7 +14,7 @@ export default function Experience() {
       </p>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-gray-900 rounded-lg p-6">
+        <div className="bg-gray-900 rounded-3xl p-6">
           <h3 className="font-bold mb-3">Endurance Evolution</h3>
           <p className="text-gray-400 mb-4">
             Push your limits with our scientifically designed endurance programs
@@ -23,7 +23,7 @@ export default function Experience() {
             Learn More
           </button>
         </div>
-        <div className="bg-gray-900 rounded-lg p-6">
+        <div className="bg-gray-900 rounded-3xl p-6">
           <h3 className="font-bold mb-3">Speed Surge</h3>
           <p className="text-gray-400 mb-4">
             Explosive training methods to increase your athletic performance
