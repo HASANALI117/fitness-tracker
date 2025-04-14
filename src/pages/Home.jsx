@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import Inspiration from "../components/Inspiration";
 import Discover from "../components/Discover";
+import Train from "../components/Train";
 
 export default function FitnessWebsite() {
   return (
@@ -18,6 +19,7 @@ export default function FitnessWebsite() {
       <Discover />
 
       {/* Train Smarter Section */}
+      <Train></Train>
 
       {/* Experience Section */}
 
