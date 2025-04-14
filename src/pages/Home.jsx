@@ -2,6 +2,7 @@ import React from "react";
 import { ChevronRight, Instagram, Facebook, Twitter } from "lucide-react";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
+import Inspiration from "../components/Inspiration";
 
 export default function FitnessWebsite() {
   return (
@@ -10,7 +11,7 @@ export default function FitnessWebsite() {
       <Hero></Hero>
 
       {/* Inspiration Section */}
-
+      <Inspiration></Inspiration>
       {/* Discover Section */}
 
       {/* Train Smarter Section */}
