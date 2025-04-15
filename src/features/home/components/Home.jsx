@@ -1,13 +1,13 @@
 import React from "react";
-import Hero from "../components/Hero";
-import Footer from "../components/Footer";
-import Inspiration from "../components/Inspiration";
-import Discover from "../components/Discover";
-import Train from "../components/Train";
-import Experience from "../components/Experience";
-import Trainers from "../components/Trainers";
-import Success from "../components/Success";
-import News from "../components/News";
+import Hero from "./Hero";
+import Footer from "./Footer";
+import Inspiration from "./Inspiration";
+import Discover from "./Discover";
+import Train from "./Train";
+import Experience from "./Experience";
+import Trainers from "./Trainers";
+import Success from "./Success";
+import News from "./News";
 
 export default function FitnessWebsite() {
   return (
