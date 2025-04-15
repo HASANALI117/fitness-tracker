@@ -26,7 +26,7 @@ export default function RecommendedFood() {
       <div className="grid grid-cols-4 gap-3">
         <div>
           <div className="text-sm text-gray-500 mb-2">Day one</div>
-          <div className="bg-gray-800 rounded-lg p-3">
+          <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
                 <div className="font-medium">Veggis and Hummus</div>
@@ -44,12 +44,12 @@ export default function RecommendedFood() {
 
         <div>
           <div className="text-sm text-gray-500 mb-2">Day two</div>
-          <div className="bg-teal-400 rounded-lg p-3 text-black">
+          <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
                 <div className="font-medium">A bowl of salad</div>
-                <div className="text-xs">12 days</div>
-                <div className="text-xs">only lunch time</div>
+                <div className="text-xs text-gray-400">12 days</div>
+                <div className="text-xs text-gray-400">only lunch time</div>
               </div>
               <img
                 src="/api/placeholder/50/50"
@@ -62,7 +62,7 @@ export default function RecommendedFood() {
 
         <div>
           <div className="text-sm text-gray-500 mb-2">Day three</div>
-          <div className="bg-gray-800 rounded-lg p-3">
+          <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
                 <div className="font-medium">Green variety foods</div>
@@ -80,7 +80,7 @@ export default function RecommendedFood() {
 
         <div>
           <div className="text-sm text-gray-500 mb-2">Day four</div>
-          <div className="bg-gray-800 rounded-lg p-3">
+          <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
                 <div className="font-medium">A bowl of berries</div>

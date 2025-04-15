@@ -24,7 +24,7 @@ export default function RecommendedActivity() {
           </svg>
         </div>
       </div>
-      <div className="bg-gray-800 rounded-lg p-4 space-y-4">
+      <div className="bg-gray-900/80 rounded-lg p-4 space-y-4">
         <div className="flex items-center space-x-3">
           <div className="bg-lime-300 p-2 rounded text-black">
             <Dumbbell size={20} />

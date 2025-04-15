@@ -23,7 +23,7 @@ export default function HeartRate() {
           </svg>
         </div>
       </div>
-      <div className="bg-gray-800 rounded-lg p-4">
+      <div className="bg-gray-900/80 rounded-lg p-4">
         <div className="flex justify-between text-gray-400 text-sm">
           <div>90b</div>
           <div>70beats/m</div>

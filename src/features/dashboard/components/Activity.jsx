@@ -35,7 +35,7 @@ export default function Activity() {
           </svg>
         </div>
       </div>
-      <div className="bg-gray-800 rounded-lg p-4">
+      <div className="bg-gray-900/80 rounded-lg p-4">
         <div className="flex justify-between h-48 items-end">
           {activityData.map((data, index) => (
             <div key={index} className="flex flex-col items-center">

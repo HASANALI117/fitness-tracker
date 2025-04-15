@@ -23,7 +23,7 @@ export default function Overview() {
           </svg>
         </div>
       </div>
-      <div className="bg-gray-800 rounded-lg p-4">
+      <div className="bg-gray-900/80 rounded-lg p-4">
         <div className="flex justify-center mb-4">
           <div className="relative w-32 h-32">
             <svg className="w-full h-full" viewBox="0 0 36 36">

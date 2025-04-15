@@ -24,10 +24,10 @@ export default function FitnessGoal() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-lime-200 rounded-lg p-2 text-black">
+        <div className="bg-gray-900/80 rounded-lg p-2">
           <div className="font-medium">Side planks</div>
-          <div className="text-sm">12 sets/day</div>
-          <div className="bg-lime-300 rounded px-2 py-1 text-xs inline-block mt-1">
+          <div className="text-sm text-gray-400">12 sets/day</div>
+          <div className="bg-lime-300 text-black rounded px-2 py-1 text-xs inline-block mt-1">
             Bravo
           </div>
           <div className="mt-2">
@@ -38,10 +38,10 @@ export default function FitnessGoal() {
             />
           </div>
         </div>
-        <div className="bg-teal-400 rounded-lg p-2 text-black">
+        <div className="bg-gray-900/80 rounded-lg p-2">
           <div className="font-medium">Rope lifting</div>
-          <div className="text-sm">10 sets/day</div>
-          <div className="bg-teal-300 rounded px-2 py-1 text-xs inline-block mt-1">
+          <div className="text-sm text-gray-400">10 sets/day</div>
+          <div className="bg-teal-300 text-black rounded px-2 py-1 text-xs inline-block mt-1">
             Well
           </div>
           <div className="mt-2">
@@ -52,10 +52,10 @@ export default function FitnessGoal() {
             />
           </div>
         </div>
-        <div className="bg-gray-200 rounded-lg p-2 text-black">
+        <div className="bg-gray-900/80 rounded-lg p-2">
           <div className="font-medium">ABS & Stretch</div>
-          <div className="text-sm">10 minutes</div>
-          <div className="bg-red-300 rounded px-2 py-1 text-xs inline-block mt-1">
+          <div className="text-sm text-gray-400">10 minutes</div>
+          <div className="bg-red-300 text-black rounded px-2 py-1 text-xs inline-block mt-1">
             Great
           </div>
           <div className="mt-2">

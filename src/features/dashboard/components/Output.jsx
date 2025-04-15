@@ -24,7 +24,7 @@ export default function Output() {
         </div>
       </div>
       <div className="space-y-3">
-        <div className="bg-lime-200 rounded-lg p-4 text-black">
+        <div className="bg-gray-900/80 rounded-lg p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center mr-3">
@@ -47,13 +47,13 @@ export default function Output() {
                 <div className="text-xl font-bold">123 gm</div>
               </div>
             </div>
-            <div className="bg-amber-400 px-2 py-1 rounded text-xs font-bold">
+            <div className="bg-amber-400 text-black px-2 py-1 rounded text-xs font-bold">
               WOW
             </div>
           </div>
         </div>
 
-        <div className="bg-teal-400 rounded-lg p-4 text-black">
+        <div className="bg-gray-900/80 rounded-lg p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center mr-3">
@@ -76,7 +76,7 @@ export default function Output() {
                 <div className="text-xl font-bold">1.23 kg</div>
               </div>
             </div>
-            <div className="bg-red-400 px-2 py-1 rounded text-xs font-bold">
+            <div className="bg-red-400 text-black px-2 py-1 rounded text-xs font-bold">
               Great
             </div>
           </div>
