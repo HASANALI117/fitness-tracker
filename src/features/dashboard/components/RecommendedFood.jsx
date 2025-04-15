@@ -25,7 +25,7 @@ export default function RecommendedFood() {
       </div>
       <div className="grid grid-cols-4 gap-3">
         <div>
-          <div className="text-sm text-gray-500 mb-2">Day one</div>
+          <div className="text-sm text-gray-500 mb-2">Day 1</div>
           <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
@@ -34,7 +34,7 @@ export default function RecommendedFood() {
                 <div className="text-xs text-gray-400">only dinner time</div>
               </div>
               <img
-                src="/api/placeholder/50/50"
+                src="https://png.pngtree.com/png-vector/20240518/ourmid/pngtree-classic-hummus-with-toppings-png-image_12493575.png"
                 alt="Food"
                 className="w-12 h-12 rounded-full"
               />
@@ -43,7 +43,7 @@ export default function RecommendedFood() {
         </div>
 
         <div>
-          <div className="text-sm text-gray-500 mb-2">Day two</div>
+          <div className="text-sm text-gray-500 mb-2">Day 2</div>
           <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
@@ -52,7 +52,7 @@ export default function RecommendedFood() {
                 <div className="text-xs text-gray-400">only lunch time</div>
               </div>
               <img
-                src="/api/placeholder/50/50"
+                src="https://png.pngtree.com/png-vector/20240712/ourmid/pngtree-food-bowl-vegetable-salad-png-image_13052209.png"
                 alt="Food"
                 className="w-12 h-12 rounded-full"
               />
@@ -61,7 +61,7 @@ export default function RecommendedFood() {
         </div>
 
         <div>
-          <div className="text-sm text-gray-500 mb-2">Day three</div>
+          <div className="text-sm text-gray-500 mb-2">Day 3</div>
           <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
@@ -70,7 +70,7 @@ export default function RecommendedFood() {
                 <div className="text-xs text-gray-400">for breakfast</div>
               </div>
               <img
-                src="/api/placeholder/50/50"
+                src="https://png.pngtree.com/png-clipart/20240907/original/pngtree-d-photo-of-variety-vegetable-pile-nature-food-on-transparent-background-png-image_15961411.png"
                 alt="Food"
                 className="w-12 h-12 rounded-full"
               />
@@ -79,7 +79,7 @@ export default function RecommendedFood() {
         </div>
 
         <div>
-          <div className="text-sm text-gray-500 mb-2">Day four</div>
+          <div className="text-sm text-gray-500 mb-2">Day 4</div>
           <div className="bg-gray-900/80 rounded-lg p-3">
             <div className="flex justify-between items-center">
               <div>
@@ -88,7 +88,7 @@ export default function RecommendedFood() {
                 <div className="text-xs text-gray-400">for breakfast</div>
               </div>
               <img
-                src="/api/placeholder/50/50"
+                src="https://png.pngtree.com/png-clipart/20241010/original/pngtree-fresh-mixed-berries-in-white-bowl-illustration-png-image_16263974.png"
                 alt="Food"
                 className="w-12 h-12 rounded-full"
               />
