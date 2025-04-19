@@ -22,7 +22,7 @@ export default function Inspiration() {
         Confident You.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-4 rounded-3xl p-8 bg-gray-900/80 relative overflow-hidden">
+      <div className="rounded-3xl p-8 bg-gray-900/80 relative overflow-hidden">
         {/* Image positioned behind text, on the right side, flipped horizontally */}
         <img
           src="IMG_8803.png"
