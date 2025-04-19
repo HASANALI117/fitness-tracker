@@ -6,10 +6,8 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between mb-8">
           <div className="mb-6 md:mb-0">
-            <span className="text-lime-400 font-bold text-2xl">
-              FitnessZone
-            </span>
-            <p className="text-gray-400 mt-2">
+            <img src="logo.PNG" alt="logo" className="h-20 md:h-24 w-auto" />
+            <p className="text-gray-400 mt-2 px-12">
               Elevating fitness to an art form.
             </p>
           </div>
@@ -60,7 +58,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400">
-            © 2025 FitnessZone. All rights reserved.
+            © 2025 Fitness Zone. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-lime-400">
