@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 // Register a new user
 export const signup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { first_name, last_name, email, password } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -19,8 +19,8 @@ export const signup = async (req, res) => {
 
     // Create new user
     const newUser = new User({
-      firstName,
-      lastName,
+      first_name,
+      last_name,
       email,
       password: hashedPassword,
     });
@@ -38,8 +38,8 @@ export const signup = async (req, res) => {
       token,
       user: {
         id: newUser._id,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
+        first_name: newUser.first_name,
+        last_name: newUser.last_name,
         email: newUser.email,
       },
     });
