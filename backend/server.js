@@ -1,7 +1,9 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import authRoutes from "./routes/authRoutes.js";
+import workoutRoutes from "./routes/workoutRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -20,8 +22,9 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
-const authRoutes = require("./routes/authRoutes");
+
 app.use("/api/auth", authRoutes);
+app.use("/api/workout", workoutRoutes);
 
 // Start server
 app.listen(PORT, () => {
