@@ -20,11 +20,8 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
-
-// Health check route
-app.get("/", (req, res) => {
-  res.send("Fitness Tracker API is running");
-});
+const authRoutes = require("./routes/authRoutes");
+app.use("/api/auth", authRoutes);
 
 // Start server
 app.listen(PORT, () => {
