@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
+import nutritionRoutes from "./routes/nutritionRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +26,7 @@ mongoose
 
 app.use("/api/auth", authRoutes);
 app.use("/api/workout", workoutRoutes);
+app.use("/api/nutrition", nutritionRoutes);
 
 // Start server
 app.listen(PORT, () => {
