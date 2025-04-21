@@ -22,22 +22,22 @@ export default function Signin() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
+      <div className="w-full max-w-md p-8 space-y-8 bg-gray-900/80 rounded-lg shadow-md border border-gray-800">
         <div className="text-center">
           <img
-            className="mx-auto h-12 w-auto"
-            src="https://breakdancelibrary.com/fitness/wp-content/uploads/sites/23/2022/12/logo-fitness.svg"
+            className="mx-auto h-24 w-auto"
+            src="logo.PNG"
             alt="Fitness Tracker Logo"
           />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          <h2 className="text-3xl font-bold text-white">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-400">
             Or{" "}
             <Link
               to="/signup"
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium text-lime-400 hover:text-lime-300"
             >
               create a new account
             </Link>
@@ -49,7 +49,7 @@ export default function Signin() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-300"
               >
                 Email address
               </label>
@@ -61,14 +61,14 @@ export default function Signin() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Email address"
               />
             </div>
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-300"
               >
                 Password
               </label>
@@ -80,32 +80,17 @@ export default function Signin() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Password"
               />
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-
+          <div className="flex items-center">
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-blue-600 hover:text-blue-500"
+                className="font-medium text-lime-400 hover:text-lime-300"
               >
                 Forgot your password?
               </a>
@@ -115,7 +100,7 @@ export default function Signin() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-black bg-lime-400 hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-lime-400"
             >
               Sign in
             </button>
@@ -124,7 +109,7 @@ export default function Signin() {
       </div>
 
       <div className="mt-8 text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-400">
           Start your fitness journey today! Track your workouts, set goals, and
           achieve results.
         </p>

@@ -46,22 +46,20 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
+      <div className="w-full max-w-md p-8 space-y-8 bg-gray-900/80 rounded-lg shadow-md border border-gray-800">
         <div className="text-center">
           <img
-            className="mx-auto h-12 w-auto"
-            src="https://breakdancelibrary.com/fitness/wp-content/uploads/sites/23/2022/12/logo-fitness.svg"
+            className="mx-auto h-24 w-auto"
+            src="logo.PNG"
             alt="Fitness Tracker Logo"
           />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-3xl font-bold text-white">Create your account</h2>
+          <p className="mt-2 text-sm text-gray-400">
             Already have an account?{" "}
             <Link
               to="/signin"
-              className="font-medium text-blue-600 hover:text-blue-500"
+              className="font-medium text-lime-400 hover:text-lime-300"
             >
               Sign in
             </Link>
@@ -74,7 +72,7 @@ export default function Signup() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   First Name
                 </label>
@@ -85,11 +83,11 @@ export default function Signup() {
                   required
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                   placeholder="First Name"
                 />
                 {errors.firstName && (
-                  <p className="mt-1 text-xs text-red-500">
+                  <p className="mt-1 text-xs text-red-400">
                     {errors.firstName}
                   </p>
                 )}
@@ -97,7 +95,7 @@ export default function Signup() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Last Name
                 </label>
@@ -108,11 +106,11 @@ export default function Signup() {
                   required
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                   placeholder="Last Name"
                 />
                 {errors.lastName && (
-                  <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
+                  <p className="mt-1 text-xs text-red-400">{errors.lastName}</p>
                 )}
               </div>
             </div>
@@ -120,7 +118,7 @@ export default function Signup() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-300"
               >
                 Email address
               </label>
@@ -132,18 +130,18 @@ export default function Signup() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Email address"
               />
               {errors.email && (
-                <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+                <p className="mt-1 text-xs text-red-400">{errors.email}</p>
               )}
             </div>
 
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-300"
               >
                 Password
               </label>
@@ -154,35 +152,11 @@ export default function Signup() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Password"
               />
               {errors.password && (
-                <p className="mt-1 text-xs text-red-500">{errors.password}</p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Confirm Password"
-              />
-              {errors.confirmPassword && (
-                <p className="mt-1 text-xs text-red-500">
-                  {errors.confirmPassword}
-                </p>
+                <p className="mt-1 text-xs text-red-400">{errors.password}</p>
               )}
             </div>
           </div>
@@ -190,7 +164,7 @@ export default function Signup() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-black bg-lime-400 hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-lime-400"
             >
               Sign up
             </button>
@@ -199,7 +173,7 @@ export default function Signup() {
       </div>
 
       <div className="mt-8 text-center">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-400">
           By signing up, you'll be able to track your workouts, set fitness
           goals, and monitor your progress!
         </p>
