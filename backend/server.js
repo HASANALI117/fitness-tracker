@@ -2,10 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
+// Routes
 import authRoutes from "./routes/authRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
 import nutritionRoutes from "./routes/nutritionRoutes.js";
-import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -29,6 +32,7 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/workout", workoutRoutes);
 app.use("/api/nutrition", nutritionRoutes);
+app.use("/api/user", userRoutes);
 
 // Start server
 app.listen(PORT, () => {
