@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
 import nutritionRoutes from "./routes/nutritionRoutes.js";
+import cookieParser from "cookie-parser";
 
 // Load environment variables
 dotenv.config();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT;
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Database connection
