@@ -57,7 +57,7 @@ export const generateWorkoutPlan = async (req, res) => {
     });
 
     // Create a workout plan record in the database
-    await WorkoutPlan.create({
+    const newPlan = await WorkoutPlan.create({
       userId,
       age,
       height,
@@ -80,6 +80,7 @@ export const generateWorkoutPlan = async (req, res) => {
     const currentTime = Date.now();
     const result = {
       ...workoutData,
+      id: newPlan._id,
       cacheTime: currentTime,
       time: currentTime,
       status: "success",
