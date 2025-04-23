@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Signin() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,11 +17,27 @@ export default function Signin() {
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sign in attempted with:", formData);
-    // Add authentication logic here
+
+    try {
+      await axios.post(
+        "http://localhost:5000/api/auth/signin",
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      // console.log(response.data);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Signin error:", error);
+    }
   };
 
   return (

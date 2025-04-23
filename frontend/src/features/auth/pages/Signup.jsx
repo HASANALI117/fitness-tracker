@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Signup() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
+    age: "",
+    height: "",
+    weight: "",
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
-
-  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,35 +22,37 @@ export default function Signup() {
       [name]: value,
     }));
   };
-
-  const validate = () => {
-    let tempErrors = {};
-    if (!formData.firstName) tempErrors.firstName = "First name is required";
-    if (!formData.lastName) tempErrors.lastName = "Last name is required";
-    if (!formData.email) tempErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      tempErrors.email = "Email is invalid";
-    if (!formData.password) tempErrors.password = "Password is required";
-    else if (formData.password.length < 6)
-      tempErrors.password = "Password must be at least 6 characters";
-    if (formData.password !== formData.confirmPassword)
-      tempErrors.confirmPassword = "Passwords don't match";
-
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log("Sign up attempted with:", formData);
-      // Add user registration logic here
+
+    try {
+      await axios.post(
+        "http://localhost:5000/api/auth/signup",
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          age: formData.age ? Number(formData.age) : undefined,
+          height: formData.height ? Number(formData.height) : undefined,
+          weight: formData.weight ? Number(formData.weight) : undefined,
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      // console.log(response.data);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Signup error:", error);
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
-      <div className="w-full max-w-md p-8 space-y-8 bg-gray-900/80 rounded-lg shadow-md border border-gray-800">
+      <div className="w-full max-w-md p-8 space-y-8 bg-gray-900/80 rounded-lg shadow-md border border-gray-800 mt-12">
         <div className="text-center">
           <img
             className="mx-auto h-24 w-auto"
@@ -86,11 +91,6 @@ export default function Signup() {
                   className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                   placeholder="First Name"
                 />
-                {errors.firstName && (
-                  <p className="mt-1 text-xs text-red-400">
-                    {errors.firstName}
-                  </p>
-                )}
               </div>
               <div>
                 <label
@@ -109,9 +109,63 @@ export default function Signup() {
                   className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                   placeholder="Last Name"
                 />
-                {errors.lastName && (
-                  <p className="mt-1 text-xs text-red-400">{errors.lastName}</p>
-                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <label
+                  htmlFor="age"
+                  className="block text-sm font-medium text-gray-300"
+                >
+                  Age
+                </label>
+                <input
+                  id="age"
+                  name="age"
+                  type="text"
+                  required
+                  value={formData.age}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
+                  placeholder="First Name"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="height"
+                  className="block text-sm font-medium text-gray-300"
+                >
+                  Height
+                </label>
+                <input
+                  id="height"
+                  name="height"
+                  type="text"
+                  required
+                  value={formData.height}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
+                  placeholder="Last Name"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="weight"
+                  className="block text-sm font-medium text-gray-300"
+                >
+                  Weight
+                </label>
+                <input
+                  id="weight"
+                  name="weight"
+                  type="text"
+                  required
+                  value={formData.weight}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
+                  placeholder="Last Name"
+                />
               </div>
             </div>
 
@@ -133,9 +187,6 @@ export default function Signup() {
                 className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Email address"
               />
-              {errors.email && (
-                <p className="mt-1 text-xs text-red-400">{errors.email}</p>
-              )}
             </div>
 
             <div>
@@ -155,9 +206,6 @@ export default function Signup() {
                 className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
                 placeholder="Password"
               />
-              {errors.password && (
-                <p className="mt-1 text-xs text-red-400">{errors.password}</p>
-              )}
             </div>
           </div>
 
