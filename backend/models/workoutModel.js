@@ -1,16 +1,32 @@
 import mongoose from "mongoose";
 
+// Exercise schema
 const exerciseSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  duration: String,
-  repetitions: String,
-  sets: String,
-  equipment: String,
+  sets: { type: Number },
+  reps: { type: Number },
+  duration: { type: Number },
+  equipment: { type: String },
 });
 
+// Day plan schema
 const dayPlanSchema = new mongoose.Schema({
   day: { type: String, required: true },
+  focus: { type: String },
   exercises: [exerciseSchema],
+});
+
+// Weekly plan schema
+const weekPlanSchema = new mongoose.Schema({
+  week: { type: Number, required: true },
+  exercises: [dayPlanSchema],
+});
+
+// SEO schema matching the Gemini format
+const seoSchema = new mongoose.Schema({
+  title: { type: String },
+  description: { type: String },
+  keywords: [{ type: String }],
 });
 
 const workoutPlanSchema = new mongoose.Schema(
@@ -20,6 +36,9 @@ const workoutPlanSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    age: { type: Number },
+    height: { type: Number },
+    weight: { type: Number },
     goal: { type: String, required: true },
     fitness_level: { type: String, required: true },
     preferences: [String],
@@ -29,11 +48,10 @@ const workoutPlanSchema = new mongoose.Schema(
       session_duration: { type: Number, required: true },
     },
     plan_duration_weeks: { type: Number, required: true },
+    use_equipment: { type: Boolean },
     result: {
-      exercises: [dayPlanSchema],
-      seo_title: String,
-      seo_content: String,
-      seo_keywords: String,
+      weekly_plans: [weekPlanSchema],
+      seo: seoSchema,
     },
   },
   { timestamps: true }

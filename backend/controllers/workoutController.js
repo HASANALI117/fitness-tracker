@@ -1,50 +1,78 @@
-// import axios from "axios";
-import { createWorkoutPlan } from "../services/deepseekService.js";
+// import { createWorkoutPlan } from "../services/deepseekService.js";
+import { createWorkoutPlan } from "../services/geminiService.js";
 import WorkoutPlan from "../models/workoutModel.js";
 
-export const generateWorkoutPlan = async (req, res, next) => {
+export const generateWorkoutPlan = async (req, res) => {
   try {
     const {
+      age,
+      height,
+      weight,
       goal,
       fitness_level,
       preferences = [],
       health_conditions = [],
       schedule,
       plan_duration_weeks,
+      use_equipment,
     } = req.body;
 
     const userId = req.user._id;
 
     // Validate required fields
-    if (!goal || !fitness_level || !schedule || !plan_duration_weeks) {
+    if (
+      !goal ||
+      !fitness_level ||
+      !schedule ||
+      !plan_duration_weeks ||
+      !age ||
+      !height ||
+      !weight
+    ) {
       return res.status(400).json({
         status: false,
         message: "Missing required parameters",
       });
     }
 
+    // Validate schedule structure
+    if (!schedule.days_per_week || !schedule.session_duration) {
+      return res.status(400).json({
+        status: false,
+        message: "Schedule must include days_per_week and session_duration",
+      });
+    }
+
     const workoutData = await createWorkoutPlan({
+      age,
+      height,
+      weight,
       goal,
       fitness_level,
       preferences,
       health_conditions,
       schedule,
       plan_duration_weeks,
+      use_equipment,
     });
 
+    // Create a workout plan record in the database
     await WorkoutPlan.create({
       userId,
+      age,
+      height,
+      weight,
       goal,
       fitness_level,
       preferences,
       health_conditions,
       schedule,
       plan_duration_weeks,
+      use_equipment,
+      // Store the more detailed response structure
       result: {
-        exercises: workoutData.result.exercises,
-        seo_title: workoutData.result.seo_title,
-        seo_content: workoutData.result.seo_content,
-        seo_keywords: workoutData.result.seo_keywords,
+        weekly_plans: workoutData.weekly_plans,
+        seo: workoutData.seo,
       },
     });
 
@@ -55,7 +83,7 @@ export const generateWorkoutPlan = async (req, res, next) => {
       cacheTime: currentTime,
       time: currentTime,
       status: "success",
-      message: "Data generated successfully",
+      message: "Workout plan generated successfully",
     };
 
     return res.status(200).json(result);
@@ -87,47 +115,3 @@ export const getUserWorkoutPlans = async (req, res) => {
     });
   }
 };
-
-// export const generateWorkoutPlan = async (req, res) => {
-//   try {
-//     const {
-//       goal,
-//       fitness_level,
-//       preferences,
-//       health_conditions,
-//       schedule,
-//       plan_duration_weeks,
-//       lang,
-//     } = req.body;
-
-//     const options = {
-//       method: "POST",
-//       url: "https://ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com/generateWorkoutPlan",
-//       params: { noqueue: "1" },
-//       headers: {
-//         "x-rapidapi-key": process.env.RAPIDAPI_KEY,
-//         "x-rapidapi-host":
-//           "ai-workout-planner-exercise-fitness-nutrition-guide.p.rapidapi.com",
-//         "Content-Type": "application/json",
-//       },
-//       data: {
-//         goal,
-//         fitness_level,
-//         preferences,
-//         health_conditions,
-//         schedule,
-//         plan_duration_weeks,
-//         lang,
-//       },
-//     };
-
-//     const response = await axios.request(options);
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error("Workout API error:", error);
-//     res.status(500).json({
-//       message: "Error fetching workout plan",
-//       error: error.response?.data || error.message,
-//     });
-//   }
-// };
