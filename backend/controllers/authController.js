@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 // Register a new user
 export const signup = async (req, res) => {
   try {
-    const { first_name, last_name, email, password } = req.body;
+    const { first_name, last_name, age, height, weight, email, password } =
+      req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -21,6 +22,9 @@ export const signup = async (req, res) => {
     const newUser = new User({
       first_name,
       last_name,
+      age,
+      height,
+      weight,
       email,
       password: hashedPassword,
     });
@@ -33,16 +37,26 @@ export const signup = async (req, res) => {
       expiresIn: "24h",
     });
 
-    res.status(201).json({
-      message: "User registered successfully",
-      token,
-      user: {
-        id: newUser._id,
-        first_name: newUser.first_name,
-        last_name: newUser.last_name,
-        email: newUser.email,
-      },
-    });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      })
+      .status(201)
+      .json({
+        message: "User registered successfully",
+        user: {
+          id: newUser._id,
+          first_name: newUser.first_name,
+          last_name: newUser.last_name,
+          age: newUser.age,
+          height: newUser.height,
+          weight: newUser.weight,
+          email: newUser.email,
+        },
+      });
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ message: "Server error" });
@@ -71,16 +85,23 @@ export const signin = async (req, res) => {
       expiresIn: "24h",
     });
 
-    res.status(200).json({
-      message: "Login successful",
-      token,
-      user: {
-        id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-      },
-    });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      })
+      .status(200)
+      .json({
+        message: "Login successful",
+        user: {
+          id: user._id,
+          firstName: user.first_name,
+          lastName: user.last_name,
+          email: user.email,
+        },
+      });
   } catch (error) {
     console.error("Signin error:", error);
     res.status(500).json({ message: "Server error" });
