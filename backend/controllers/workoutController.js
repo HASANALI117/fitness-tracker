@@ -115,3 +115,33 @@ export const getUserWorkoutPlans = async (req, res) => {
     });
   }
 };
+
+// Get a specific workout plan by ID
+export const getWorkoutPlanById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find plan by ID and verify it belongs to the current user
+    const plan = await WorkoutPlan.findOne({
+      _id: id,
+      userId: req.user._id,
+    });
+
+    if (!plan) {
+      return res.status(404).json({
+        status: "error",
+        message: "Workout plan not found",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      plan,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message || "Failed to retrieve workout plan",
+    });
+  }
+};
