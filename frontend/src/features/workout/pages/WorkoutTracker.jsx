@@ -37,7 +37,7 @@ export default function WorkoutTracker() {
       days_per_week: 3,
       session_duration: 45,
     },
-    plan_duration_weeks: 4,
+    plan_duration_weeks: 1,
     use_equipment: false,
   });
 
@@ -391,23 +391,23 @@ export default function WorkoutTracker() {
 
                   <div className="flex justify-between mb-4 text-sm">
                     <div>
-                      <span className="text-gray-400">Age:</span>{" "}
+                      <span className="text-gray-400">Age:</span>
                       {currentPlan.age}
                     </div>
                     <div>
-                      <span className="text-gray-400">Height:</span>{" "}
+                      <span className="text-gray-400">Height:</span>
                       {currentPlan.height} cm
                     </div>
                     <div>
-                      <span className="text-gray-400">Weight:</span>{" "}
+                      <span className="text-gray-400">Weight:</span>
                       {currentPlan.weight} kg
                     </div>
                     <div>
-                      <span className="text-gray-400">Level:</span>{" "}
+                      <span className="text-gray-400">Level:</span>
                       {currentPlan.fitness_level}
                     </div>
                     <div>
-                      <span className="text-gray-400">Duration:</span>{" "}
+                      <span className="text-gray-400">Duration:</span>
                       {currentPlan.plan_duration_weeks} weeks
                     </div>
                   </div>
@@ -578,9 +578,10 @@ export default function WorkoutTracker() {
                     onChange={handleInputChange}
                     className="w-full bg-gray-800 rounded p-2 text-white"
                   >
+                    <option value="1">1 week</option>
+                    <option value="2">2 weeks</option>
+                    <option value="3">3 weeks</option>
                     <option value="4">4 weeks</option>
-                    <option value="8">8 weeks</option>
-                    <option value="12">12 weeks</option>
                   </select>
                 </div>
               </div>
