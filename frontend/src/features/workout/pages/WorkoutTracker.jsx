@@ -4,7 +4,6 @@ axios.defaults.withCredentials = true;
 
 import Sidebar from "../../../components/Sidebar";
 import {
-  Calendar,
   Check,
   Clock,
   Zap,
@@ -14,6 +13,7 @@ import {
   X,
   Loader2,
 } from "lucide-react";
+import Header from "../../../components/Header";
 
 export default function WorkoutTracker() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -209,20 +209,18 @@ export default function WorkoutTracker() {
         <Sidebar />
         <div className="ml-20 w-full">
           {/* Header */}
-          <header className="flex justify-between items-center p-6 border-b border-gray-800">
-            <div>
-              <h1 className="text-2xl font-bold">Workout Tracker</h1>
-              <p className="text-gray-400">
-                Generate and track your personalized workout plan
-              </p>
-            </div>
-            <button
-              onClick={() => setShowWorkoutForm(true)}
-              className="bg-lime-500 hover:bg-lime-600 text-black font-medium py-2 px-4 rounded transition-colors"
-            >
-              Generate New Plan
-            </button>
-          </header>
+          <Header
+            title="Workout Tracker"
+            subtitle="Generate and track your workout plans"
+            actionButton={
+              <button
+                onClick={() => setShowWorkoutForm(true)}
+                className="bg-lime-500 hover:bg-lime-600 text-black font-medium py-2 px-4 rounded transition-colors"
+              >
+                Generate Workout Plan
+              </button>
+            }
+          />
 
           {/* Main Content */}
           <div className="p-6 space-y-8">

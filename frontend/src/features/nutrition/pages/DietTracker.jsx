@@ -15,6 +15,7 @@ import {
   Beef,
   Wheat,
 } from "lucide-react";
+import Header from "../../../components/Header";
 
 export default function DietTracker() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -174,17 +175,18 @@ export default function DietTracker() {
         <Sidebar />
         <div className="ml-20 w-full">
           {/* Header */}
-          <header className="flex justify-between items-center p-6 border-b border-gray-800">
-            <div>
-              <h1 className="text-2xl font-bold">Meal Planner</h1>
-              <p className="text-gray-400">
-                Track your nutrition and meal plans
-              </p>
-            </div>
-            <button className="px-4 py-2 bg-lime-400 text-black rounded-md font-medium flex items-center">
-              <CirclePlus size={18} className="mr-2" /> Add Food
-            </button>
-          </header>
+          <Header
+            title="Diet Tracker"
+            subtitle="Monitor your nutrition intake"
+            actionButton={
+              <button
+                // onClick={() => setShowMealForm(true)}
+                className="bg-lime-500 hover:bg-lime-600 text-black font-medium py-2 px-4 rounded transition-colors"
+              >
+                Generate Nutrition Plan
+              </button>
+            }
+          />
 
           {/* Main Content */}
           <div className="p-6 space-y-8">

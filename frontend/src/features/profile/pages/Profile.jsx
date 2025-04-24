@@ -5,6 +5,7 @@ import ProfileForm from "../components/ProfileForm";
 import { Lock } from "lucide-react";
 import FitnessStats from "../components/FitnessStats";
 import ProfileCard from "../components/ProfileCard";
+import Header from "../../../components/Header";
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -35,22 +36,22 @@ export default function Profile() {
         <Sidebar />
         <div className="ml-20 w-full">
           {/* Header */}
-          <header className="flex justify-between items-center p-6 border-b border-gray-800">
-            <div>
-              <h1 className="text-2xl font-bold">Profile</h1>
-              <p className="text-gray-400">
-                Manage your personal information and preferences
-              </p>
-            </div>
-            <button
-              onClick={() => setIsEditing(!isEditing)}
-              className={`px-4 py-2 rounded-md font-medium ${
-                isEditing ? "bg-gray-700 text-white" : "bg-lime-400 text-black"
-              }`}
-            >
-              {isEditing ? "Cancel" : "Edit Profile"}
-            </button>
-          </header>
+          <Header
+            title="Profile"
+            subtitle="Manage your personal information"
+            actionButton={
+              <button
+                onClick={() => setIsEditing(!isEditing)}
+                className={`px-4 py-2 rounded-md font-medium ${
+                  isEditing
+                    ? "bg-gray-700 text-white"
+                    : "bg-lime-400 text-black"
+                }`}
+              >
+                {isEditing ? "Cancel" : "Edit Profile"}
+              </button>
+            }
+          />
 
           {successMessage && (
             <div className="mx-6 mt-4 bg-green-900/50 border border-green-500 text-white p-3 rounded">
