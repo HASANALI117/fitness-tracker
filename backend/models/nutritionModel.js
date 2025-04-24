@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
 
-const recipeSchema = new mongoose.Schema({
+const foodItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   ingredients: [String],
-  calories: Number,
+  calories: { type: Number, required: true },
+  protein: { type: Number, required: true },
+  carbs: { type: Number, required: true },
+  fats: { type: Number, required: true },
 });
 
-const mealSuggestionSchema = new mongoose.Schema({
+const mealSchema = new mongoose.Schema({
   meal: { type: String, required: true },
-  suggestions: [recipeSchema],
+  suggestions: [foodItemSchema],
 });
 
 const nutritionPlanSchema = new mongoose.Schema(
@@ -24,17 +27,19 @@ const nutritionPlanSchema = new mongoose.Schema(
     target_weight: { type: Number, required: true },
     daily_activity_level: { type: String, required: true },
     result: {
-      goal: String,
-      calories_per_day: Number,
+      goal_summary: String,
+      calories_per_day: { type: Number, required: true },
       macronutrients: {
-        carbohydrates: String,
-        proteins: String,
-        fats: String,
+        carbohydrates: { type: Number, required: true },
+        proteins: { type: Number, required: true },
+        fats: { type: Number, required: true },
       },
-      meal_suggestions: [mealSuggestionSchema],
-      seo_title: String,
-      seo_content: String,
-      seo_keywords: String,
+      daily_meals: [mealSchema], // Changed from meal_suggestions to daily_meals
+      seo: {
+        title: String,
+        description: String,
+        keywords: [String],
+      },
     },
   },
   { timestamps: true }
