@@ -156,6 +156,103 @@ export const createNutritionAdvice = async (params) => {
       daily_activity_level,
     } = params;
 
+    const nutritionPrompt = `You are an experienced nutrition coach creating a personalized nutrition plan based on:
+    Goal: ${goal}
+    Dietary restrictions: ${dietary_restrictions.join(", ") || "None"}
+    Current weight: ${current_weight} kg
+    Target weight: ${target_weight} kg
+    Daily activity level: ${daily_activity_level}
+
+    As a professional nutrition coach:
+    - Calculate appropriate daily calorie intake based on the person's stats and goals
+    - Create a balanced meal plan with proper macronutrient distribution
+    - Include a variety of nutrient-dense foods while respecting dietary restrictions
+    - Consider meal timing for optimal energy levels and goal achievement
+    - Provide specific meal suggestions that align with the dietary restrictions
+
+    CRITICAL SCHEMA INSTRUCTIONS:
+    - Your output MUST contain ONLY the fields specified below, NO ADDITIONAL FIELDS
+    - "calories_per_day" MUST ALWAYS be a NUMBER, never a string
+    - All percentage values for macronutrients MUST be NUMBERS (not strings with % symbol)
+    - For example: "carbohydrates": 40, "proteins": 30, "fats": 30
+    - Calorie counts for recipes MUST always be NUMBERS, never strings
+    - NEVER include strings for numerical fields
+    - NEVER add extra fields not shown in the example below
+
+    Return a JSON object with this EXACT structure:
+    {
+      "nutrition_plan": {
+        "goal_summary": "Detailed goal description",
+        "calories_per_day": 2000,
+        "macronutrients": {
+          "carbohydrates": 40,
+          "proteins": 30,
+          "fats": 30
+        },
+        "daily_meals": [
+          {
+            "meal": "Breakfast",
+            "suggestions": [
+              {
+                "name": "Recipe name",
+                "ingredients": ["ingredient 1", "ingredient 2"],
+                "calories": 400,
+                "protein": 20,
+                "carbs": 30,
+                "fats": 15
+              }
+            ]
+          },
+          {
+            "meal": "Lunch",
+            "suggestions": [
+              {
+                "name": "Recipe name",
+                "ingredients": ["ingredient 1", "ingredient 2"],
+                "calories": 500,
+                "protein": 30,
+                "carbs": 40,
+                "fats": 20
+              }
+            ]
+          },
+          {
+            "meal": "Dinner",
+            "suggestions": [
+              {
+                "name": "Recipe name",
+                "ingredients": ["ingredient 1", "ingredient 2"],
+                "calories": 600,
+                "protein": 35,
+                "carbs": 50,
+                "fats": 20
+              }
+            ]
+          },
+          {
+            "meal": "Snacks",
+            "suggestions": [
+              {
+                "name": "Snack name",
+                "ingredients": ["ingredient 1", "ingredient 2"],
+                "calories": 200,
+                "protein": 10,
+                "carbs": 15,
+                "fats": 10
+              }
+            ]
+          }
+        ]
+      },
+      "seo": {
+        "title": "SEO optimized title",
+        "description": "SEO optimized description",
+        "keywords": ["keyword1", "keyword2", "keyword3"]
+      }
+    }
+
+    DO NOT add any fields that are not in this example. Your response must be a valid JSON object with no additional text, markdown, or explanation.`;
+
     const completion = await openai.chat.completions.create({
       messages: [
         {
@@ -165,42 +262,7 @@ export const createNutritionAdvice = async (params) => {
         },
         {
           role: "user",
-          content: `Create a nutrition plan for someone with:
-            - Goal: ${goal}
-            - Dietary restrictions: ${dietary_restrictions.join(", ")}
-            - Current weight: ${current_weight} kg
-            - Target weight: ${target_weight} kg
-            - Daily activity level: ${daily_activity_level}
-            
-            Return the response as a JSON object with this format:
-            {
-              "result": {
-                "goal": "Detailed goal description",
-                "calories_per_day": number,
-                "macronutrients": {
-                  "carbohydrates": "percentage",
-                  "proteins": "percentage",
-                  "fats": "percentage"
-                },
-                "meal_suggestions": [
-                  {
-                    "meal": "Meal name (e.g., Breakfast)",
-                    "suggestions": [
-                      {
-                        "name": "Recipe name",
-                        "ingredients": ["ingredient 1", "ingredient 2", ...],
-                        "calories": number
-                      }
-                    ]
-                  }
-                ],
-                "seo_title": "SEO optimized title",
-                "seo_content": "SEO optimized content description",
-                "seo_keywords": "comma, separated, keywords"
-              }
-            }
-            
-            Important: Make sure meal suggestions respect the dietary restrictions. Return ONLY the JSON object without any additional text, markdown, or explanation.`,
+          content: nutritionPrompt,
         },
       ],
       model: "gemini-2.0-flash",
