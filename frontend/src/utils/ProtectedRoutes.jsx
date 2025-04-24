@@ -1,10 +1,13 @@
 import { Outlet, Navigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
+
+export const UserContext = createContext({ user: null, loading: true });
 
 const ProtectedRoutes = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const verifyAuthentication = async () => {
@@ -16,11 +19,12 @@ const ProtectedRoutes = () => {
             withCredentials: true,
           }
         );
-        // console.log(response);
+        console.log(response.data);
 
         // If the request succeeds, the token is valid
         if (response.status === 200) {
           setIsAuthenticated(true);
+          setUserData(response.data.data);
         }
       } catch (error) {
         // If the request fails or returns non-2xx status, token is invalid
@@ -44,7 +48,13 @@ const ProtectedRoutes = () => {
   }
 
   // Once loaded, either show the protected content or redirect to signin
-  return isAuthenticated ? <Outlet /> : <Navigate to="/signin" />;
+  return isAuthenticated ? (
+    <UserContext.Provider value={{ user: userData, loading }}>
+      <Outlet />
+    </UserContext.Provider>
+  ) : (
+    <Navigate to="/signin" />
+  );
 };
 
 export default ProtectedRoutes;
