@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-import Sidebar from "../../dashboard/components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 import {
   Calendar,
   Check,

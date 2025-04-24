@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../dashboard/components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 import {
   Camera,
   Save,

@@ -1,5 +1,5 @@
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
+import Sidebar from "../../../components/Sidebar";
+import Header from "../../../components/Header";
 import Activity from "../components/Activity";
 import Overview from "../components/Overview";
 import FitnessGoal from "../components/FitnessGoal";

@@ -4,9 +4,9 @@ import Home from "./features/home/pages/Home";
 import Signin from "./features/auth/pages/Signin";
 import Signup from "./features/auth/pages/Signup";
 import Dashboard from "./features/dashboard/pages/Dashboard";
-import Profile from "./features/profile/Profile";
-import WorkoutTracker from "./features/dashboard/pages/WorkoutTracker";
-import DietTracker from "./features/dashboard/pages/DietTracker";
+import Profile from "./features/profile/pages/Profile";
+import WorkoutTracker from "./features/workout/pages/WorkoutTracker";
+import DietTracker from "./features/nutrition/pages/DietTracker";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 export default function App() {
