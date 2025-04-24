@@ -128,7 +128,7 @@ export default function Signup() {
                   value={formData.age}
                   onChange={handleChange}
                   className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
-                  placeholder="First Name"
+                  placeholder="Age"
                 />
               </div>
               <div>
@@ -146,7 +146,7 @@ export default function Signup() {
                   value={formData.height}
                   onChange={handleChange}
                   className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
-                  placeholder="Last Name"
+                  placeholder="Height"
                 />
               </div>
               <div>
@@ -164,7 +164,7 @@ export default function Signup() {
                   value={formData.weight}
                   onChange={handleChange}
                   className="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md shadow-sm placeholder-gray-500 text-white focus:outline-none focus:border-lime-400 focus:ring-lime-400"
-                  placeholder="Last Name"
+                  placeholder="Weight"
                 />
               </div>
             </div>
