@@ -27,13 +27,88 @@ export const createWorkoutPlan = async (params) => {
     const openai = getOpenAIClient();
 
     const {
+      age,
+      height,
+      weight,
       goal,
       fitness_level,
       preferences,
       health_conditions,
       schedule,
       plan_duration_weeks,
+      use_equipment,
     } = params;
+
+    const workoutPrompt = `You are an experienced fitness coach creating a personalized ${plan_duration_weeks}-week workout plan based on:
+    Age: ${age}
+    Height: ${height} cm
+    Weight: ${weight} kg
+    Injuries or limitations: ${health_conditions.join(", ") || "None"}
+    Schedule: ${schedule.days_per_week} days per week, ${
+      schedule.session_duration
+    } minutes per session
+    Fitness goal: ${goal}
+    Fitness level: ${fitness_level}
+    Equipment: ${
+      use_equipment ? "Will use gym equipment" : "Bodyweight exercises only"
+    }
+    Preferences: ${preferences.join(", ") || "None"}
+    
+    As a professional coach:
+    - Design a progressive plan that increases in intensity appropriately over ${plan_duration_weeks} weeks
+    - Consider muscle group splits to avoid overtraining the same muscles on consecutive days
+    - Design exercises that match the fitness level and account for any injuries
+    - Structure the workouts to specifically target the user's fitness goal
+    
+    CRITICAL SCHEMA INSTRUCTIONS:
+    - Your output MUST contain ONLY the fields specified below, NO ADDITIONAL FIELDS
+    - "sets" and "reps" MUST ALWAYS be NUMBERS, never strings
+    - For example: "sets": 3, "reps": 10
+    - Do NOT use text like "reps": "As many as possible" or "reps": "To failure" 
+    - Instead use specific numbers like "reps": 12 or "reps": 15
+    - For cardio, use "sets": 1, "reps": 1 or another appropriate number
+    - NEVER include strings for numerical fields
+    - NEVER add extra fields not shown in the example below
+
+    Additional requirements:
+    - ALWAYS include ALL 7 days of the week (Monday through Sunday) in your response
+    - Based on the schedule of ${
+      schedule.days_per_week
+    } workout days per week, mark the remaining days as rest days
+    - For rest days, use "Rest" as the focus and provide an empty exercises array
+    - Distribute workout days evenly throughout the week
+    - Ensure there's appropriate recovery time between similar muscle groups
+    
+    Return a JSON object with this EXACT structure:
+    {
+      "weekly_plans": [
+        {
+          "week": 1,
+          "exercises": [
+            {
+              "day": "Monday",
+              "focus": "Muscle groups targeted",
+              "exercises": [
+                {
+                  "name": "Exercise Name",
+                  "sets": 3,
+                  "reps": 10,
+                  "duration": 10,
+                  "equipment": "Equipment used or 'None'"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "seo": {
+        "title": "SEO optimized title",
+        "description": "SEO optimized description",
+        "keywords": ["keyword1", "keyword2", "keyword3"]
+      }
+    }
+    
+    DO NOT add any fields that are not in this example. Your response must be a valid JSON object with no additional text.`;
 
     const completion = await openai.chat.completions.create({
       messages: [
@@ -44,51 +119,15 @@ export const createWorkoutPlan = async (params) => {
         },
         {
           role: "user",
-          content: `Create a ${plan_duration_weeks}-week workout plan for someone with:
-            - Goal: ${goal}
-            - Fitness level: ${fitness_level}
-            - Preferences: ${preferences.join(", ")}
-            - Health conditions: ${health_conditions.join(", ")}
-            - Schedule: ${schedule.days_per_week} days per week, ${
-            schedule.session_duration
-          } minutes per session
-            
-            Return the response as a JSON object with this format:
-            {
-              "result": {
-                "goal": "${goal}",
-                "fitness_level": "${fitness_level}",
-                "total_weeks": ${plan_duration_weeks},
-                "schedule": {
-                  "days_per_week": ${schedule.days_per_week},
-                  "session_duration": ${schedule.session_duration}
-                },
-                "exercises": [
-                  {
-                    "day": "Day name",
-                    "exercises": [
-                      {
-                        "name": "Exercise name",
-                        "duration": "Duration in minutes",
-                        "repetitions": "Number of reps",
-                        "sets": "Number of sets",
-                        "equipment": "Equipment needed"
-                      }
-                    ]
-                  }
-                ],
-                "seo_title": "SEO optimized title",
-                "seo_content": "SEO optimized content description",
-                "seo_keywords": "comma, separated, keywords"
-              }
-            }
-            
-            Important: Return ONLY the JSON object without any additional text, markdown, or explanation.`,
+          content: workoutPrompt,
         },
       ],
       model: "deepseek-chat",
-      temperature: 0.7,
-      max_tokens: 4000,
+      temperature: 0.4, // 0.4 for more consistent structured output
+      max_tokens: 8192, // Increase from 4000 to 8192 for longer responses
+      top_p: 0.95, // Add this parameter for more focused output
+      frequency_penalty: 0.0, // Controls repetition (0.0 is standard)
+      presence_penalty: 0.0,
     });
 
     const responseText = completion.choices[0].message.content;
@@ -172,8 +211,11 @@ export const createNutritionAdvice = async (params) => {
         },
       ],
       model: "deepseek-chat",
-      temperature: 0.7,
-      max_tokens: 4000,
+      temperature: 0.4, // 0.4 for more consistent structured output
+      max_tokens: 8192, // Increase from 4000 to 8192 for longer responses
+      top_p: 0.95, // Add this parameter for more focused output
+      frequency_penalty: 0.0, // Controls repetition (0.0 is standard)
+      presence_penalty: 0.0,
     });
 
     const responseText = completion.choices[0].message.content;
