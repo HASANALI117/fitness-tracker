@@ -16,7 +16,7 @@ export default function Hero() {
                 STRONG <span className="text-lime-400">TOMORROW</span>
               </h1>
               <p className="mb-8 text-gray-400">
-                Join 10k+ members transforming their lives through fitness
+                Join 15k+ members transforming their lives through fitness
               </p>
               <button className="bg-lime-400 text-black px-6 py-3 rounded-md font-medium cursor-pointer">
                 Join Now
@@ -25,9 +25,9 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap justify-between max-w-3xl">
-            <AnimatedCounter end={120} suffix="+" label="EXPERT COACHES" />
-            <AnimatedCounter end={27} suffix="K" label="MEMBERS JOINED" />
-            <AnimatedCounter end={20} suffix="+" label="FITNESS PROGRAM" />
+            <AnimatedCounter end={50} suffix="+" label="AI WORKOUT PLANS" />
+            <AnimatedCounter end={15} suffix="K" label="ACTIVE USERS" />
+            <AnimatedCounter end={60} suffix="+" label="WORKOUT CATEGORIES" />
             <div className="flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ export default function Hero() {
                 ></rect>
               </svg>
               <AnimatedCounter
-                end={240}
+                end={450}
                 suffix="KCAL"
                 label="CALORIES BURNED"
               />
