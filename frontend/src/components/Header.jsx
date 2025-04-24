@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../utils/ProtectedRoutes";
+export default function Header() {
+  const { user, loading } = useContext(UserContext);
 
-export default function Header({ userName = "Test User" }) {
-  //   const [userName, setUserName] = useState("Smith Adam");
+  if (loading) return <p>Loading...</p>;
 
   const currentTime = new Date();
   const hours = currentTime.getHours();
@@ -20,11 +22,13 @@ export default function Header({ userName = "Test User" }) {
       <div className="flex items-center space-x-2">
         <div className="flex items-center space-x-2">
           <img
-            src="https://images.pexels.com/photos/14653174/pexels-photo-14653174.jpeg"
+            src="https://picsum.photos/500"
             alt="Profile"
-            className="w-10 h-10 rounded-full"
+            className="w-10 h-10 rounded-full border-2 border-lime-500"
           />
-          <h2 className="text-xl font-bold mx-2">{userName}</h2>
+          <h2 className="text-xl font-bold mx-2">
+            {user.first_name + " " + user.last_name}
+          </h2>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 text-gray-400"
