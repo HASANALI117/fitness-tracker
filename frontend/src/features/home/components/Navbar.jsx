@@ -2,17 +2,6 @@ import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  // const navigate = useNavigate();
-  // const isAuthenticated = localStorage.getItem("token");
-
-  // // Check if user is already logged in and redirect if needed
-  // const handleAuthClick = (e) => {
-  //   if (isAuthenticated) {
-  //     e.preventDefault();
-  //     navigate("/dashboard");
-  //   }
-  // };
-
   return (
     <header className="text-white">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
@@ -20,17 +9,17 @@ export default function Navbar() {
           <img src="logo.PNG" alt="logo" className="h-24 md:h-32 w-auto" />
         </div>
         <nav className="hidden md:flex space-x-8">
-          <a href="#" className="hover:text-lime-400">
+          <a href="#Home" className="hover:text-lime-400">
             Home
           </a>
-          <a href="#" className="hover:text-lime-400">
-            Programs
+          <a href="#Discover" className="hover:text-lime-400">
+            Discover
           </a>
-          <a href="#" className="hover:text-lime-400">
-            About
+          <a href="#Experience" className="hover:text-lime-400">
+            Experience
           </a>
-          <a href="#" className="hover:text-lime-400">
-            Trainers
+          <a href="#Success-Stories" className="hover:text-lime-400">
+            Success Stories
           </a>
         </nav>
         <div className="flex items-center space-x-4">
