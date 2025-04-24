@@ -25,7 +25,7 @@ export default function Inspiration() {
       <div className="rounded-3xl p-8 bg-gray-900/80 relative overflow-hidden">
         {/* Image positioned behind text, on the right side, flipped horizontally */}
         <img
-          src="IMG_8803.png"
+          src="IMG_8808.png"
           alt=""
           className="absolute top-0 right-0 h-full w-auto z-0 transform -scale-x-100"
         />

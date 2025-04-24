@@ -5,27 +5,15 @@ export default function Train() {
   const trainCards = [
     {
       title: "Cardio Training",
-      img: "",
+      img: "IMG_8774.jpg",
     },
     {
       title: "Strength Build",
-      img: "",
+      img: "IMG_8777.jpg",
     },
     {
       title: "Fat Loss",
-      img: "",
-    },
-    {
-      title: "HIIT Workouts",
-      img: "",
-    },
-    {
-      title: "HIIT Workouts",
-      img: "",
-    },
-    {
-      title: "HIIT Workouts",
-      img: "",
+      img: "IMG_8768.jpg",
     },
   ];
 

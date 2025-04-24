@@ -28,7 +28,7 @@ export default function FitnessWebsite() {
       <Experience />
 
       {/* Trainers Section */}
-      <Trainers />
+      {/* <Trainers /> */}
 
       {/* Success Stories */}
       <Success />
