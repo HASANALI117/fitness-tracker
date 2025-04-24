@@ -39,7 +39,7 @@ export const createWorkoutPlan = async (params) => {
     Age: ${age}
     Height: ${height} cm
     Weight: ${weight} kg
-    Injuries or limitations: ${health_conditions.join(", ")}
+    Injuries or limitations: ${health_conditions.join(", ") || "None"}
     Schedule: ${schedule.days_per_week} days per week, ${
       schedule.session_duration
     } minutes per session
@@ -48,7 +48,7 @@ export const createWorkoutPlan = async (params) => {
     Equipment: ${
       use_equipment ? "Will use gym equipment" : "Bodyweight exercises only"
     }
-    Preferences: ${preferences.join(", ")}
+    Preferences: ${preferences.join(", ") || "None"}
     
     As a professional coach:
     - Design a progressive plan that increases in intensity appropriately over ${plan_duration_weeks} weeks
@@ -120,7 +120,7 @@ export const createWorkoutPlan = async (params) => {
       ],
       model: "gemini-2.0-flash",
       temperature: 0.4,
-      max_tokens: 4000,
+      max_tokens: 8192,
     });
 
     const responseText = completion.choices[0].message.content;
@@ -203,9 +203,9 @@ export const createNutritionAdvice = async (params) => {
             Important: Make sure meal suggestions respect the dietary restrictions. Return ONLY the JSON object without any additional text, markdown, or explanation.`,
         },
       ],
-      model: "deepseek-chat",
-      temperature: 0.7,
-      max_tokens: 4000,
+      model: "gemini-2.0-flash",
+      temperature: 0.4,
+      max_tokens: 8192,
     });
 
     const responseText = completion.choices[0].message.content;
