@@ -13,6 +13,7 @@ import {
   Calendar,
   ArrowRight,
   Apple,
+  Info,
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -76,6 +77,18 @@ export default function Sidebar() {
             }`}
           >
             <User2 size={20} />
+          </div>
+        </NavLink>
+
+        <NavLink to="/about">
+          <div
+            className={`p-3 rounded-full transition-colors ${
+              isActive("/about")
+                ? "bg-lime-400 text-black"
+                : "text-gray-500 hover:text-lime-400"
+            }`}
+          >
+            <Info size={20} />
           </div>
         </NavLink>
       </div>

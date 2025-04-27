@@ -8,6 +8,7 @@ import Profile from "./features/profile/pages/Profile";
 import WorkoutTracker from "./features/workout/pages/WorkoutTracker";
 import DietTracker from "./features/nutrition/pages/DietTracker";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import About from "./features/about/pages/About";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/workout" element={<WorkoutTracker />} />
           <Route path="/diet" element={<DietTracker />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
     </Router>
