@@ -99,18 +99,6 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
               <ExerciseItem key={idx} exercise={exercise} />
             ))}
           </div>
-
-          {/* Action Button */}
-          {/* <button
-            className={`mt-4 w-full py-2.5 rounded-md text-xs font-medium flex items-center justify-center transition-colors ${
-              isCompleted
-                ? "bg-green-800/30 text-green-400 hover:bg-green-800/50"
-                : "bg-lime-900/30 text-lime-400 hover:bg-lime-900/50"
-            }`}
-          >
-            {isCompleted ? "View Workout" : "Start Workout"}
-            <ChevronRight size={14} className="ml-1" />
-          </button> */}
         </div>
       ) : (
         <div className="text-gray-400 text-sm my-12 flex-grow flex items-center justify-center flex-col">
