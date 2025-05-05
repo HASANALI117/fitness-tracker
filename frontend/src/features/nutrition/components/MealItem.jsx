@@ -81,16 +81,18 @@ export default function MealItem({ mealKey, meal, toggleMealComplete }) {
         </div>
       </div>
       <div className="bg-gray-950/40 p-4">
-        {meal.foods.map((food, index) => (
-          <div key={index} className="bg-gray-800/60 rounded-lg p-3">
-            <div className="font-medium">{food.name}</div>
-            <div className="text-gray-400 text-sm">{food.calories} kcal</div>
-            <div className="text-xs text-gray-500 mt-2">
-              Protein: {food.protein}g · Carbohydrates: {food.carbs}g · Fats:{" "}
-              {food.fat}g
+        <div className="grid grid-cols-1 gap-4">
+          {meal.foods.map((food, index) => (
+            <div key={index} className="bg-gray-800/60 rounded-lg p-3">
+              <div className="font-medium">{food.name}</div>
+              <div className="text-gray-400 text-sm">{food.calories} kcal</div>
+              <div className="text-xs text-gray-500 mt-2">
+                Protein: {food.protein}g · Carbohydrates: {food.carbs}g · Fats:{" "}
+                {food.fat}g
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
