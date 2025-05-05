@@ -10,7 +10,7 @@ const ExerciseItem = ({ exercise }) => {
         <span>
           {exercise.sets} sets × {exercise.reps} reps
         </span>
-        {exercise.weight && <span>{exercise.weight} kg</span>}
+        {exercise.duration > 0 ? <span>{exercise.duration} min</span> : ""}
       </div>
       {exercise.equipment !== "None" && (
         <div className="text-gray-400 text-xs mt-1">
