@@ -6,7 +6,7 @@ import Signup from "./features/auth/pages/Signup";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 import Profile from "./features/profile/pages/Profile";
 import WorkoutTracker from "./features/workout/pages/WorkoutTracker";
-import DietTracker from "./features/nutrition/pages/DietTracker";
+import NutritionTracker from "./features/nutrition/pages/NutritionTracker";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import About from "./features/about/pages/About";
 
@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/workout" element={<WorkoutTracker />} />
-          <Route path="/diet" element={<DietTracker />} />
+          <Route path="/diet" element={<NutritionTracker />} />
           <Route path="/about" element={<About />} />
         </Route>
       </Routes>
