@@ -86,19 +86,6 @@ export default function About() {
                 collectively work toward a healthier society.
               </p>
             </div>
-
-            <div className="bg-gray-900/80 rounded-lg p-6">
-              <h2 className="text-2xl font-bold mb-4">Join Our Movement</h2>
-              <p className="mb-6">
-                Start your fitness journey today and become part of a global
-                movement towards better health. Together, we can make a
-                significant impact on obesity rates and promote healthier
-                lifestyles worldwide.
-              </p>
-              <button className="bg-lime-400 text-black px-6 py-3 rounded-md font-medium cursor-pointer hover:bg-lime-500 transition-colors">
-                Get Started
-              </button>
-            </div>
           </div>
         </div>
       </div>
