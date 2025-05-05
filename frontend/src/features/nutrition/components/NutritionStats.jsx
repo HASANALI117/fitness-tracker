@@ -22,7 +22,7 @@ export default function NutritionStats({ totals }) {
         <div className="flex justify-between">
           <div>
             <p className="text-gray-400 text-sm">Calories Today</p>
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-2xl font-bold transition-all duration-500">
               {completedCalories}{" "}
               <span className="text-sm text-gray-400">/ {totalCalories}</span>
             </h3>
@@ -33,7 +33,7 @@ export default function NutritionStats({ totals }) {
         </div>
         <div className="mt-4 bg-gray-800/50 rounded-full h-2">
           <div
-            className="bg-lime-400 h-2 rounded-full"
+            className="bg-lime-400 h-2 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
@@ -44,7 +44,9 @@ export default function NutritionStats({ totals }) {
         <div className="flex justify-between">
           <div>
             <p className="text-gray-400 text-sm">Protein</p>
-            <h3 className="text-2xl font-bold">{totalProtein}g</h3>
+            <h3 className="text-2xl font-bold transition-all duration-500">
+              {totalProtein}g
+            </h3>
           </div>
           <div className="h-10 w-10 rounded-full bg-lime-400/20 flex items-center justify-center">
             <Beef size={18} className="text-lime-400" />
@@ -59,7 +61,9 @@ export default function NutritionStats({ totals }) {
         <div className="flex justify-between">
           <div>
             <p className="text-gray-400 text-sm">Carbohydrates</p>
-            <h3 className="text-2xl font-bold">{totalCarbs}g</h3>
+            <h3 className="text-2xl font-bold transition-all duration-500">
+              {totalCarbs}g
+            </h3>
           </div>
           <div className="h-10 w-10 rounded-full bg-lime-400/20 flex items-center justify-center">
             <Wheat size={18} className="text-lime-400" />
@@ -74,7 +78,9 @@ export default function NutritionStats({ totals }) {
         <div className="flex justify-between">
           <div>
             <p className="text-gray-400 text-sm">Fat</p>
-            <h3 className="text-2xl font-bold">{totalFat}g</h3>
+            <h3 className="text-2xl font-bold transition-all duration-500">
+              {totalFat}g
+            </h3>
           </div>
           <div className="h-10 w-10 rounded-full bg-lime-400/20 flex items-center justify-center">
             <Droplets size={18} className="text-lime-400" />
