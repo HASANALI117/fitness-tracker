@@ -11,7 +11,7 @@ export default function MealTimeline({ meals, toggleMealComplete }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-4 gap-4 mt-6">
       {Object.entries(meals).map(([key, meal]) => (
         <MealItem
           key={key}

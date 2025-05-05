@@ -47,7 +47,7 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
         {!isRestDay && (
           <button
             onClick={() => onWorkoutComplete(day.day)}
-            className="text-gray-400 hover:text-lime-400 transition-colors"
+            className="text-gray-400 hover:text-lime-400 transition-colors cursor-pointer"
             aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
           >
             {isCompleted ? (
