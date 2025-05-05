@@ -6,7 +6,7 @@ import NutritionStats from "../components/NutritionStats";
 import DateNavigation from "../components/DateNavigation";
 import MealTimeline from "../components/MealTimeline";
 import NutritionBreakdown from "../components/NutritionBreakdown";
-import NutritionPlanModal from "../components/NutritionPlanModal";
+import NutritionPlanModal from "../components/NutritionForm";
 
 axios.defaults.withCredentials = true;
 
