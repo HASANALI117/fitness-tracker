@@ -38,11 +38,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL,
-      "https://fitness-zone-three.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin: "*",
     credentials: true,
   })
 );
