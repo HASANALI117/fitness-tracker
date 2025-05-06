@@ -8,7 +8,7 @@ import { Plus } from "lucide-react";
 // Import components
 import StatCard from "../components/StatCard";
 import ActivityChart from "../components/ActivityChart";
-import WorkoutConsistencyChart from "../../workout/components/WorkoutStats/WorkoutConsistencyChart";
+import WorkoutConsistencyChart from "../components/WorkoutConsistencyChart";
 import UpcomingWorkouts from "../components/UpcomingWorkouts";
 import Achievements from "../components/Achievements";
 

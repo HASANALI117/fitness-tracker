@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import WorkoutTabs from "../components/WorkoutTabs";
-import WorkoutStats from "../components/WorkoutStats/WorkoutStats";
 import WorkoutPlanDisplay from "../components/WorkoutPlan/WorkoutPlanDisplay";
 import WeeklyNavigator from "../components/WorkoutPlan/WeeklyNavigator";
 import WorkoutForm from "../components/WorkoutForm";
@@ -191,8 +190,6 @@ export default function WorkoutTracker() {
                 handleWorkoutComplete={handleWorkoutComplete}
                 showWorkoutForm={() => setShowWorkoutForm(true)}
               />
-
-              <WorkoutStats stats={stats} key="workout-stats" />
             </AnimatePresence>
           </div>
         </div>
