@@ -1,87 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Save, User, Mail } from "lucide-react";
-import axios from "axios";
+import React, { useState } from "react";
+import { Save, User, Mail, Activity } from "lucide-react";
+import { motion } from "framer-motion";
+import PasswordChangeForm from "./PasswordChangeForm";
 
 const ProfileForm = ({
-  userData,
+  formData,
+  handleChange,
+  handleSubmit,
   isEditing,
   setIsEditing,
-  onProfileUpdate,
 }) => {
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    height: "",
-    weight: "",
-    age: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  // Update form data when userData changes
-  useEffect(() => {
-    if (userData) {
-      setFormData({
-        first_name: userData.first_name || "",
-        last_name: userData.last_name || "",
-        email: userData.email || "",
-        height: userData.height || "",
-        weight: userData.weight || "",
-        age: userData.age || "",
-      });
-    }
-  }, [userData]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    try {
-      // Convert numerical fields from strings to numbers
-      const dataToSubmit = {
-        ...formData,
-        height: formData.height ? Number(formData.height) : undefined,
-        weight: formData.weight ? Number(formData.weight) : undefined,
-        age: formData.age ? Number(formData.age) : undefined,
-      };
-
-      const response = await axios.put(
-        "http://localhost:5000/api/user/profile",
-        dataToSubmit,
-        { withCredentials: true }
-      );
-
-      // Call the callback function to update parent state
-      onProfileUpdate(response.data.data);
-      setIsEditing(false);
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to update profile");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {error && (
-        <div className="bg-red-900/50 border border-red-500 text-white p-3 rounded">
-          {error}
-        </div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm text-gray-400 flex items-center">
+          <label className="flex items-center text-sm text-gray-400">
             <User size={16} className="mr-2" /> First Name
           </label>
           {isEditing ? (
@@ -90,15 +25,17 @@ const ProfileForm = ({
               name="first_name"
               value={formData.first_name}
               onChange={handleChange}
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-lime-400"
+              className="w-full p-3 text-white transition-all duration-200 border border-gray-700 rounded-lg bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent"
             />
           ) : (
-            <div className="font-medium">{formData.first_name}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.first_name}
+            </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-gray-400 flex items-center">
+          <label className="flex items-center text-sm text-gray-400">
             <User size={16} className="mr-2" /> Last Name
           </label>
           {isEditing ? (
@@ -107,15 +44,17 @@ const ProfileForm = ({
               name="last_name"
               value={formData.last_name}
               onChange={handleChange}
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-lime-400"
+              className="w-full p-3 text-white transition-all duration-200 border border-gray-700 rounded-lg bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent"
             />
           ) : (
-            <div className="font-medium">{formData.last_name}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.last_name}
+            </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-gray-400 flex items-center">
+          <label className="flex items-center text-sm text-gray-400">
             <Mail size={16} className="mr-2" /> Email
           </label>
           {isEditing ? (
@@ -125,82 +64,101 @@ const ProfileForm = ({
               value={formData.email}
               onChange={handleChange}
               disabled
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-gray-400 focus:outline-none"
+              className="w-full p-3 text-gray-400 border border-gray-700 rounded-lg cursor-not-allowed bg-gray-800/50 focus:outline-none"
             />
           ) : (
-            <div className="font-medium">{formData.email}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.email}
+            </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-gray-400">Age</label>
+          <label className="flex items-center text-sm text-gray-400">
+            <Activity size={16} className="mr-2" /> Age
+          </label>
           {isEditing ? (
             <input
               type="number"
               name="age"
               value={formData.age}
               onChange={handleChange}
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-lime-400"
+              className="w-full p-3 text-white transition-all duration-200 border border-gray-700 rounded-lg bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent"
             />
           ) : (
-            <div className="font-medium">{formData.age}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.age}
+            </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-gray-400">Height (cm)</label>
+          <label className="flex items-center text-sm text-gray-400">
+            <Activity size={16} className="mr-2" /> Height (cm)
+          </label>
           {isEditing ? (
             <input
               type="number"
               name="height"
               value={formData.height}
               onChange={handleChange}
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-lime-400"
+              className="w-full p-3 text-white transition-all duration-200 border border-gray-700 rounded-lg bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent"
             />
           ) : (
-            <div className="font-medium">{formData.height}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.height}
+            </div>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm text-gray-400">Weight (kg)</label>
+          <label className="flex items-center text-sm text-gray-400">
+            <Activity size={16} className="mr-2" /> Weight (kg)
+          </label>
           {isEditing ? (
             <input
               type="number"
               name="weight"
               value={formData.weight}
               onChange={handleChange}
-              className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-lime-400"
+              className="w-full p-3 text-white transition-all duration-200 border border-gray-700 rounded-lg bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-transparent"
             />
           ) : (
-            <div className="font-medium">{formData.weight}</div>
+            <div className="p-3 font-medium rounded-lg bg-gray-800/50">
+              {formData.weight}
+            </div>
           )}
         </div>
       </div>
 
       {isEditing && (
-        <div className="pt-4 border-t border-gray-800 flex justify-end space-x-4">
-          <button
+        <PasswordChangeForm
+          formData={formData}
+          handleChange={handleChange}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
+      )}
+
+      {isEditing && (
+        <div className="flex justify-end pt-4 space-x-4 border-t border-gray-800">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="button"
             onClick={() => setIsEditing(false)}
-            className="px-4 py-2 border border-gray-600 rounded-md text-gray-400"
-            disabled={loading}
+            className="px-4 py-2 text-gray-400 transition-colors border border-gray-600 rounded-lg hover:bg-gray-800"
           >
             Cancel
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="submit"
-            className="px-4 py-2 bg-lime-400 text-black rounded-md font-medium flex items-center disabled:opacity-50"
-            disabled={loading}
+            className="flex items-center px-4 py-2 font-medium text-black rounded-lg bg-lime-400"
           >
-            {loading ? (
-              "Saving..."
-            ) : (
-              <>
-                <Save size={18} className="mr-2" /> Save Changes
-              </>
-            )}
-          </button>
+            <Save size={18} className="mr-2" /> Save Changes
+          </motion.button>
         </div>
       )}
     </form>
