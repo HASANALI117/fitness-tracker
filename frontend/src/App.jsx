@@ -10,7 +10,6 @@ import NutritionTracker from "./features/nutrition/pages/NutritionTracker";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import About from "./features/about/pages/About";
 import AuthPages from "./features/auth/pages/AuthPages";
-import DashboardPage from "./features/dashboard/pages/DashboardPage";
 
 export default function App() {
   return (
@@ -23,7 +22,7 @@ export default function App() {
         <Route path="/signup" element={<AuthPages />} />
 
         <Route element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/workout" element={<WorkoutTrackerPage />} />
           <Route path="/diet" element={<NutritionTracker />} />
