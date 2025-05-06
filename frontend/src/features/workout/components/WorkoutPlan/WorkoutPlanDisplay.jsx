@@ -18,7 +18,7 @@ export default function WorkoutPlanDisplay({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="p-8 text-center shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl"
+        className="p-8 text-center shadow-lg bg-gray-900/80 rounded-xl"
       >
         <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gray-800/80">
           <Dumbbell size={32} className="text-lime-400" />
@@ -48,7 +48,7 @@ export default function WorkoutPlanDisplay({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="p-6 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl"
+      className="p-6 shadow-lg bg-gray-900/80 rounded-xl"
     >
       {/* Workout Plan Info */}
       <div className="flex flex-col items-start justify-between mb-6 md:flex-row md:items-center">

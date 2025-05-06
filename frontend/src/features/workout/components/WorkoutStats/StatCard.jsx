@@ -15,7 +15,7 @@ export default function StatCard({
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, delay }}
-      className="p-6 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl"
+      className="p-6 shadow-lg bg-gray-900/80 rounded-xl"
     >
       <div className="flex justify-between">
         <div>
@@ -34,7 +34,7 @@ export default function StatCard({
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${progressValue}%` }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0 }}
             className="h-3 rounded-full bg-gradient-to-r from-lime-400 to-green-500"
           ></motion.div>
         </div>

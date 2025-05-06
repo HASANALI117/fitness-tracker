@@ -6,8 +6,8 @@ export default function WorkoutConsistencyChart() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.6 }}
-      className="p-6 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl"
+      transition={{ duration: 0.3, delay: 0.3 }}
+      className="p-6 shadow-lg bg-gray-900/80 rounded-xl"
     >
       <h3 className="mb-4 text-lg font-bold">Workout Consistency</h3>
       <div className="grid grid-cols-7 gap-2">

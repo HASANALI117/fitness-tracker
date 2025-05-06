@@ -31,7 +31,7 @@ export default function WeeklyNavigator({
     <div className="flex flex-col items-start justify-between gap-4 mb-6 md:flex-row md:items-center">
       <div className="flex items-center space-x-4">
         <h2 className="text-xl font-bold">Weekly Schedule</h2>
-        <div className="flex items-center px-4 py-1 rounded-lg bg-gray-800/80">
+        <div className="flex items-center px-4 py-1 rounded-lg bg-gray-900/80">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -56,7 +56,7 @@ export default function WeeklyNavigator({
         <select
           value={currentPlanId || ""}
           onChange={(e) => onPlanChange(e.target.value)}
-          className="px-3 py-2 text-gray-200 border-0 rounded-lg cursor-pointer bg-gray-800/80 focus:outline-none"
+          className="px-3 py-2 text-gray-200 border-0 rounded-lg cursor-pointer bg-gray-900/80 focus:outline-none"
         >
           {workoutPlans.map((plan) => (
             <option key={plan._id} value={plan._id}>

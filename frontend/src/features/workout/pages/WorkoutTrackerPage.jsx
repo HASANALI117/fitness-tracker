@@ -12,6 +12,7 @@ import WorkoutStats from "../components/WorkoutStats/WorkoutStats";
 import WorkoutPlanDisplay from "../components/WorkoutPlan/WorkoutPlanDisplay";
 import WeeklyNavigator from "../components/WorkoutPlan/WeeklyNavigator";
 import WorkoutForm from "../components/WorkoutForm";
+import StatsOverview from "../components/WorkoutStats/StatsOverview";
 
 export default function WorkoutTracker() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -21,7 +22,6 @@ export default function WorkoutTracker() {
   const [currentPlan, setCurrentPlan] = useState(null);
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
   const [completedWorkouts, setCompletedWorkouts] = useState([]);
-  const [activeTab, setActiveTab] = useState("plan"); // 'plan' or 'stats'
 
   // Fetch user's workout plans on component mount
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function WorkoutTracker() {
   const stats = calculateStats();
 
   return (
-    <div className="min-h-screen text-white bg-gradient-to-br from-gray-950 to-gray-900">
+    <div className="min-h-screen text-white bg-black">
       <div className="flex">
         <Sidebar />
         <div className="w-full ml-20">
@@ -163,44 +163,36 @@ export default function WorkoutTracker() {
 
           {/* Main Content */}
           <div className="p-6 space-y-8">
-            {/* Tabs */}
-            <WorkoutTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <AnimatePresence>
+              {/* Stats Overview */}
+              <StatsOverview stats={stats} />
 
-            <AnimatePresence mode="wait">
-              {activeTab === "stats" ? (
-                <WorkoutStats stats={stats} />
-              ) : (
-                <motion.div
-                  key="plan"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Week Navigator */}
-                  <WeeklyNavigator
-                    currentDate={currentDate}
-                    navigateWeek={navigateWeek}
-                    currentPlanId={currentPlanId}
-                    workoutPlans={workoutPlans}
-                    onPlanChange={(id) => {
-                      setCurrentPlanId(id);
-                      fetchWorkoutPlanById(id);
-                    }}
-                  />
+              {/* Week Navigator */}
+              <WeeklyNavigator
+                key="weekly-navigator"
+                currentDate={currentDate}
+                navigateWeek={navigateWeek}
+                currentPlanId={currentPlanId}
+                workoutPlans={workoutPlans}
+                onPlanChange={(id) => {
+                  setCurrentPlanId(id);
+                  fetchWorkoutPlanById(id);
+                }}
+              />
 
-                  {/* Workout Plan Display */}
-                  <WorkoutPlanDisplay
-                    currentPlan={currentPlan}
-                    workoutPlans={workoutPlans}
-                    activeWeekIndex={activeWeekIndex}
-                    setActiveWeekIndex={setActiveWeekIndex}
-                    completedWorkouts={completedWorkouts}
-                    handleWorkoutComplete={handleWorkoutComplete}
-                    showWorkoutForm={() => setShowWorkoutForm(true)}
-                  />
-                </motion.div>
-              )}
+              {/* Workout Plan Display */}
+              <WorkoutPlanDisplay
+                key="workout-plan-display"
+                currentPlan={currentPlan}
+                workoutPlans={workoutPlans}
+                activeWeekIndex={activeWeekIndex}
+                setActiveWeekIndex={setActiveWeekIndex}
+                completedWorkouts={completedWorkouts}
+                handleWorkoutComplete={handleWorkoutComplete}
+                showWorkoutForm={() => setShowWorkoutForm(true)}
+              />
+
+              <WorkoutStats stats={stats} key="workout-stats" />
             </AnimatePresence>
           </div>
         </div>

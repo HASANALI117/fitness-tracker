@@ -8,8 +8,8 @@ export default function WeeklyProgressChart() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.5 }}
-      className="p-6 shadow-lg bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl"
+      transition={{ duration: 0.3, delay: 0.3 }}
+      className="p-6 shadow-lg bg-gray-900/80 rounded-xl"
     >
       <h3 className="mb-4 text-lg font-bold">Weekly Progress</h3>
       <div className="flex items-end justify-between h-48">
