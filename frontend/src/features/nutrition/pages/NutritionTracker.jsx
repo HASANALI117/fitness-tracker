@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import NutritionStats from "../components/NutritionStats";
 import DateNavigation from "../components/DateNavigation";
 import MealTimeline from "../components/MealTimeline";
 import NutritionBreakdown from "../components/NutritionBreakdown";
-import NutritionPlanModal from "../components/NutritionForm";
+import NutritionForm from "../components/NutritionForm";
+import LoadingState from "../components/LoadingState";
+import EmptyState from "../components/EmptyState";
 
 axios.defaults.withCredentials = true;
 
-export default function DietTracker() {
+export default function NutritionTracker() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeSection, setActiveSection] = useState("today");
   const [meals, setMeals] = useState({});
@@ -38,8 +41,6 @@ export default function DietTracker() {
         "http://localhost:5000/api/nutrition/latestPlan"
       );
 
-      console.log("Latest nutrition plan:", response.data.data[0]);
-
       // Set current plan if available
       if (response.data.data.length > 0) {
         processPlanData(response.data.data[0]);
@@ -53,8 +54,6 @@ export default function DietTracker() {
 
   // Process plan data to create meals structure
   const processPlanData = (plan) => {
-    console.log("Processing plan:", plan);
-
     // Check if there's valid data to process
     if (!plan || !plan.result) {
       console.error("Invalid plan data structure");
@@ -195,30 +194,36 @@ export default function DietTracker() {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="min-h-screen text-white bg-black">
       <div className="flex">
         <Sidebar />
-        <div className="ml-20 w-full">
+        <div className="w-full ml-20">
+          {/* Header */}
           <Header
-            title="Diet Tracker"
+            title="Nutrition Tracker"
             subtitle="Monitor your nutrition intake"
             actionButton={
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setShowPlanModal(true)}
-                className="bg-lime-500 hover:bg-lime-600 text-black font-medium py-2 px-4 rounded transition-colors"
+                className="px-6 py-2 font-medium text-black transition-all rounded-lg shadow-lg bg-lime-500 hover:shadow-lime-500/20"
               >
                 Generate Nutrition Plan
-              </button>
+              </motion.button>
             }
           />
 
+          {/* Main Content */}
           <div className="p-6 space-y-8">
             {isLoading ? (
-              <div className="text-center py-10">Loading nutrition data...</div>
+              <LoadingState />
             ) : (
               <>
+                {/* Nutrition Stats */}
                 <NutritionStats totals={nutritionTotals} />
 
+                {/* Date Navigation */}
                 <DateNavigation
                   currentDate={currentDate}
                   navigateDay={navigateDay}
@@ -226,22 +231,17 @@ export default function DietTracker() {
                   setActiveSection={setActiveSection}
                 />
 
+                {/* Meal Timeline */}
                 {Object.keys(meals.today || {}).length === 0 ? (
-                  <div className="bg-gray-900/80 p-6 rounded-lg text-center">
-                    <p className="text-gray-400 mb-4">
-                      No meal data available.
-                    </p>
-                    <p>
-                      Try generating a new nutrition plan with the button above.
-                    </p>
-                  </div>
+                  <EmptyState onGeneratePlan={() => setShowPlanModal(true)} />
                 ) : (
                   <MealTimeline
-                    meals={meals.today || {}}
+                    meals={meals.today}
                     toggleMealComplete={toggleMealComplete}
                   />
                 )}
 
+                {/* Nutrition Breakdown */}
                 <NutritionBreakdown totals={nutritionTotals} />
               </>
             )}
@@ -249,8 +249,9 @@ export default function DietTracker() {
         </div>
       </div>
 
+      {/* Nutrition Plan Form Modal */}
       {showPlanModal && (
-        <NutritionPlanModal
+        <NutritionForm
           onClose={() => setShowPlanModal(false)}
           onSuccess={fetchNutritionPlans}
         />

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Check,
   Clock,
@@ -7,6 +8,7 @@ import {
   Utensils,
   Salad,
   Circle,
+  Banana,
 } from "lucide-react";
 
 export default function MealItem({ mealKey, meal, toggleMealComplete }) {
@@ -14,83 +16,76 @@ export default function MealItem({ mealKey, meal, toggleMealComplete }) {
   const getMealIcon = (mealTitle) => {
     const title = mealTitle.toLowerCase();
     if (title.includes("breakfast"))
-      return (
-        <div className="bg-amber-400/20 h-10 w-10 rounded-full  flex items-center justify-center mr-4">
-          <Coffee size={18} className="text-amber-400" />
-        </div>
-      );
+      return <Coffee size={18} className="text-amber-400" />;
     if (title.includes("snack"))
-      return (
-        <div className="bg-green-400/20 h-10 w-10 rounded-full  flex items-center justify-center mr-4">
-          <Apple size={18} className="text-green-400" />
-        </div>
-      );
+      return <Apple size={18} className="text-green-400" />;
     if (title.includes("lunch"))
-      return (
-        <div className="bg-blue-400/20 h-10 w-10 rounded-full  flex items-center justify-center mr-4">
-          <Utensils size={18} className="text-blue-400" />
-        </div>
-      );
+      return <Utensils size={18} className="text-blue-400" />;
     if (title.includes("dinner"))
-      return (
-        <div className="bg-purple-400/20 h-10 w-10 rounded-full  flex items-center justify-center mr-4">
-          <Salad size={18} className="text-purple-400" />
-        </div>
-      );
-    else
-      return (
-        <div className="bg-amber-400/20 h-10 w-10 rounded-full  flex items-center justify-center mr-4">
-          <Apple size={18} className="text-orange-400" />
-        </div>
-      );
+      return <Salad size={18} className="text-purple-400" />;
+    else return <Banana size={18} className="text-orange-400" />;
   };
 
   return (
     <div
-      className={`bg-gray-900/80 rounded-lg overflow-hidden ${
+      className={`bg-gray-900/80 rounded-xl overflow-hidden shadow-lg ${
         meal.completed ? "border-l-4 border-lime-400" : ""
-      }`}
+      } transition-all duration-200 hover:translate-y-[-2px] hover:shadow-xl`}
     >
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            {getMealIcon(meal.title)}
+            <div className="flex items-center justify-center w-12 h-12 mr-4 rounded-full bg-gray-800/80">
+              {getMealIcon(meal.title)}
+            </div>
 
             <div>
-              <h3 className="font-bold text-lg">{meal.title}</h3>
-              <p className="text-gray-400 text-sm flex items-center">
+              <h3 className="text-lg font-bold">{meal.title}</h3>
+              <p className="flex items-center text-sm text-gray-400">
                 <Clock size={14} className="mr-1" /> {meal.time}
               </p>
             </div>
           </div>
           <div className="flex items-center">
-            <span className="text-xl font-bold mr-4">{meal.calories} kcal</span>
+            <span className="mr-4 text-xl font-bold">{meal.calories} kcal</span>
             {meal.completed ? (
-              <div className="bg-lime-400 rounded-full p-1">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-1 rounded-full bg-gradient-to-r from-lime-400 to-green-400"
+              >
                 <Check size={18} className="text-black" />
-              </div>
+              </motion.div>
             ) : (
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => toggleMealComplete(mealKey)}
-                className="text-gray-400 hover:text-lime-400 transition-colors cursor-pointer"
+                className="text-gray-400 transition-colors cursor-pointer hover:text-lime-400"
               >
                 <Circle size={18} />
-              </button>
+              </motion.button>
             )}
           </div>
         </div>
       </div>
-      <div className="bg-gray-950/40 p-4">
+      <div className="p-4 bg-gray-950/40">
         <div className="grid grid-cols-1 gap-4">
-          {meal.foods.map((food, index) => (
-            <div key={index} className="bg-gray-800/60 rounded-lg p-3">
+          {meal.foods.map((food, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 * idx }}
+              className="p-3 transition-colors rounded-lg bg-gray-800/60 hover:bg-gray-800/80"
+            >
               <div className="font-medium">{food.name}</div>
-              <div className="text-gray-400 text-sm">{food.calories} kcal</div>
-              <div className="text-xs text-gray-500 mt-2">
-                Protein: {food.protein}g · Carbohydrates: {food.carbs}g · Fats:{" "}
+              <div className="text-sm text-gray-400">{food.calories} kcal</div>
+              <div className="mt-2 text-xs text-gray-500">
+                Protein: {food.protein}g · Carbs: {food.carbs}g · Fats:{" "}
                 {food.fat}g
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
