@@ -1,34 +1,35 @@
 import React from "react";
-import {
-  CheckCircle,
-  Circle,
-  Calendar,
-  ChevronRight,
-  Clock,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Calendar, CheckCircle, Circle, Clock } from "lucide-react";
 import ExerciseItem from "./ExerciseItem";
 
-const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
-  const isCompleted = completedWorkouts?.includes(day.day);
+export default function WorkoutDayCard({
+  day,
+  index,
+  isCompleted,
+  handleWorkoutComplete,
+}) {
   const isRestDay = day.focus === "Rest";
-
-  // Calculate total workout duration if not a rest day
   const totalDuration = !isRestDay
     ? day.exercises.reduce((total, ex) => total + (ex.duration || 0), 0)
     : 0;
-
-  // Count exercises
   const exerciseCount = !isRestDay ? day.exercises.length : 0;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.3,
+        delay: index * 0.05,
+      }}
       className={`rounded-xl p-0 text-center h-full flex flex-col overflow-hidden shadow-lg ${
         isRestDay
           ? "bg-gray-800/40 border border-gray-700/30"
           : isCompleted
-          ? "bg-green-950 border border-green-800/50"
-          : "bg-gray-900 border border-lime-900/30"
-      } transition-all duration-200 hover:translate-y-[-2px]`}
+          ? "bg-gradient-to-br from-green-900/60 to-green-800/30 border border-green-700/50"
+          : "bg-gradient-to-br from-gray-800/80 to-gray-900/60 border border-lime-900/30"
+      } transition-all duration-200 hover:translate-y-[-2px] hover:shadow-xl`}
     >
       {/* Header Section */}
       <div
@@ -45,9 +46,11 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
           <span className="font-medium">{day.day}</span>
         </div>
         {!isRestDay && (
-          <button
-            onClick={() => onWorkoutComplete(day.day)}
-            className="text-gray-400 hover:text-lime-400 transition-colors cursor-pointer"
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => handleWorkoutComplete(day.day)}
+            className="text-gray-400 transition-colors cursor-pointer hover:text-lime-400"
             aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
           >
             {isCompleted ? (
@@ -55,7 +58,7 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
             ) : (
               <Circle size={18} />
             )}
-          </button>
+          </motion.button>
         )}
       </div>
 
@@ -76,10 +79,10 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
 
       {/* Content Section */}
       {!isRestDay ? (
-        <div className="text-left px-3 pt-1 pb-3 text-sm flex-grow flex flex-col justify-between">
+        <div className="flex flex-col justify-between flex-grow px-3 pt-1 pb-3 text-sm text-left">
           {/* Workout Stats */}
           {exerciseCount > 0 && (
-            <div className="flex gap-3 justify-center text-xs text-gray-400 mb-3">
+            <div className="flex justify-center gap-3 mb-3 text-xs text-gray-400">
               <div className="flex items-center">
                 <span className="mr-1.5">{exerciseCount}</span>
                 exercises
@@ -94,22 +97,20 @@ const DayCard = ({ day, onWorkoutComplete, completedWorkouts }) => {
           )}
 
           {/* Exercises List */}
-          <div className="max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 px-1">
+          <div className="px-1 overflow-y-auto max-h-80 scrollbar-thin scrollbar-thumb-gray-700">
             {day.exercises.map((exercise, idx) => (
-              <ExerciseItem key={idx} exercise={exercise} />
+              <ExerciseItem key={idx} exercise={exercise} index={idx} />
             ))}
           </div>
         </div>
       ) : (
-        <div className="text-gray-400 text-sm my-12 flex-grow flex items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center flex-grow my-12 text-sm text-gray-400">
           <span className="text-base">Rest Day</span>
-          <p className="text-xs mt-2 px-4 text-gray-500">
+          <p className="px-4 mt-2 text-xs text-gray-500">
             Recovery is an essential part of any fitness regime
           </p>
         </div>
       )}
-    </div>
+    </motion.div>
   );
-};
-
-export default DayCard;
+}

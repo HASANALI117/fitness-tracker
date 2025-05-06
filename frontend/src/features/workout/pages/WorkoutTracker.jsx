@@ -14,7 +14,6 @@ import WorkoutForm from "../components/WorkoutForm";
 import WorkoutPlanInfo from "../components/WorkoutPlanInfo";
 
 export default function WorkoutTracker() {
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [workoutPlans, setWorkoutPlans] = useState([]);
@@ -22,23 +21,6 @@ export default function WorkoutTracker() {
   const [currentPlan, setCurrentPlan] = useState(null);
   const [activeWeekIndex, setActiveWeekIndex] = useState(0);
   const [completedWorkouts, setCompletedWorkouts] = useState([]);
-
-  // Form state
-  const [formData, setFormData] = useState({
-    age: "",
-    height: "",
-    weight: "",
-    goal: "weight_loss",
-    fitness_level: "beginner",
-    preferences: [],
-    health_conditions: [],
-    schedule: {
-      days_per_week: 3,
-      session_duration: 45,
-    },
-    plan_duration_weeks: 1,
-    use_equipment: false,
-  });
 
   // Fetch user's workout plans on component mount
   useEffect(() => {
@@ -160,31 +142,6 @@ export default function WorkoutTracker() {
     }
   };
 
-  // Format date for header
-  const formatDateRange = (date) => {
-    const startOfWeek = new Date(date);
-    const day = startOfWeek.getDay();
-    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
-    startOfWeek.setDate(diff);
-
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(endOfWeek.getDate() + 6);
-
-    const startMonth = startOfWeek.toLocaleString("default", {
-      month: "short",
-    });
-    const endMonth = endOfWeek.toLocaleString("default", { month: "short" });
-
-    return `${startOfWeek.getDate()} ${startMonth} - ${endOfWeek.getDate()} ${endMonth}`;
-  };
-
-  // Navigate between weeks
-  const navigateWeek = (direction) => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + (direction === "next" ? 7 : -7));
-    setCurrentDate(newDate);
-  };
-
   // Calculate stats from current plan and completed workouts
   const calculateStats = () => {
     if (
@@ -250,11 +207,7 @@ export default function WorkoutTracker() {
 
             {/* Week Navigator and Plan Selector */}
             <div className="flex justify-between items-center">
-              <WeekNavigator
-                currentDate={currentDate}
-                formatDateRange={formatDateRange}
-                navigateWeek={navigateWeek}
-              />
+              <WeekNavigator />
 
               <WorkoutPlanSelector
                 workoutPlans={workoutPlans}
