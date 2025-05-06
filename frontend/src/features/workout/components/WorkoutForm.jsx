@@ -90,7 +90,7 @@ export default function WorkoutForm({ onClose, onSubmit }) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ type: "spring", damping: 25 }}
-        className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl"
+        className="bg-gray-900/80 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold">
