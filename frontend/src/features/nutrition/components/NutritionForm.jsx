@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import { X, Loader2 } from "lucide-react";
+import { generateNutritionAdvice } from "../../../services/api/nutritionService";
 
 export default function NutritionForm({ onClose, onSuccess }) {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -48,10 +48,7 @@ export default function NutritionForm({ onClose, onSuccess }) {
     setIsGenerating(true);
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/nutrition/generatePlan",
-        formData
-      );
+      await generateNutritionAdvice(formData);
       onSuccess();
       onClose();
     } catch (error) {

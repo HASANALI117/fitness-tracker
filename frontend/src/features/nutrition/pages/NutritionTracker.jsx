@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
@@ -10,8 +9,7 @@ import NutritionBreakdown from "../components/NutritionBreakdown";
 import NutritionForm from "../components/NutritionForm";
 import LoadingState from "../components/LoadingState";
 import EmptyState from "../components/EmptyState";
-
-axios.defaults.withCredentials = true;
+import { getAllNutritionPlans } from "../../../services/api/nutritionService";
 
 export default function NutritionTracker() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -37,13 +35,11 @@ export default function NutritionTracker() {
   const fetchNutritionPlans = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(
-        "http://localhost:5000/api/nutrition/latestPlan"
-      );
+      const plans = await getAllNutritionPlans();
 
       // Set current plan if available
-      if (response.data.data.length > 0) {
-        processPlanData(response.data.data[0]);
+      if (plans.length > 0) {
+        processPlanData(plans[0]);
       }
     } catch (error) {
       console.error("Failed to fetch nutrition plans:", error);
