@@ -55,8 +55,7 @@ const connectToDatabase = async () => {
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
       // These options help with serverless environments
-      bufferCommands: true,
-      bufferMaxEntries: 0,
+      bufferCommands: false,
       maxPoolSize: 10,
       minPoolSize: 0,
       connectTimeoutMS: 10000,
